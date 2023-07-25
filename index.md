@@ -1,6 +1,14 @@
+<head>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" type="applications/javascript">
+    
+  </script>
+</head>
+
+
 # Data-Driven Innovation
 
-Hello!
+<img src="/docs/assets/ars_headshot.jpg" alt="Headshot" width=375 height=525></img>
+
 
 You can use the [editor on GitHub](https://github.com/AlexSath/AlexSath.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
