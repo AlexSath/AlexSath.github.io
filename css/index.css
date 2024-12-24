@@ -12,42 +12,6 @@ body {
     color: var(--text-color);
 }
 
-h1, h2, .accented, a {
-    color: var(--primary-color);
-}
-
-p, li {
-    color: var(--text-color);
-}
-
-body {
-    font-size: 1em;
-    left: 0px;
-    top: 0px;   
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-size: 2em;
-    font-family: 'Merriweather', serif;
-    color: var(--text-color);
-}
-
-p {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
-}
-
-li {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color); 
-}
-
-
-
 /* ------------ */
 /* HEADLINE TEXT */
 /* ------------ */
