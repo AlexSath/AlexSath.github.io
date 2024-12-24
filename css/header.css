@@ -5,8 +5,8 @@
 /* Colors */
 :root {
     --primary-color: #BE713B; 
-    --secondary-color: #4E2A84;
-    --accent-color: #1C3A13;
+    --secondary-color: #6B0504;
+    --accent-color: #26547C;
     --background-color: #F5F5F5;
     --text-color: #172121;
 }
@@ -93,8 +93,12 @@
 }
 
 .socialImgContainer.head {
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.socialIcon {
+    filter: invert(1);
 }
 
 /* Media queries for responsive resizing */

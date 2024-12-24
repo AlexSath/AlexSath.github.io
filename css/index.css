@@ -196,3 +196,7 @@ li {
     align-items: center;
 }
 
+.socialIcon.foot {
+    filter: invert(11%) sepia(32%) saturate(6193%) hue-rotate(348deg) brightness(98%) contrast(109%);
+}
+
