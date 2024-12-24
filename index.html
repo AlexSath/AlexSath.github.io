@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Alex R. Sathler</title>
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-        <link rel="stylesheet" href="index.css">
-
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Alex R. Sathler - Data-Driven Innovation">
+        <meta name="keywords" content="Data Science, Bioinformatics, Machine Learning, Neurological Disease, Computer Vision">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/index.css">
         <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#f5f5f5">
+        <title>Alex R. Sathler</title>
     </head>
 
     <body>
-        <!--HEADERSECTION-->
+        <!--HEADER SECTION-->
         <div class="section" id="header">
-            <h1 id="title">Alexandre R. Sathler</h1>
-        </div>
+            <div class="headerBlock">
+                <h1>Alex R. Sathler</h1>
+            </div>
+            <div class="headerBlock navigation">
+                <nav aria-label="Main Navigation">
+                    <ul class="headerBlock ul" id="headerMenu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="html/about.html">About</a></li>
+                        <li><a href="html/projects.html">Projects</a></li>
+                        <li><a href="html/publications.html">Publications</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="headerBlock social">
+                <div class="socialImgContainer head">
+                    <a href="https://www.linkedin.com/in/alexsathler/" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/linked_in.png"></img>
+                    </a>
+                </div>
+                <div class="socialImgContainer head">
+                    <a href="https://scholar.google.com/citations?hl=en&user=Ol7rmA4AAAAJ" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/scholar_logo.png"></img>
+                    </a>
+                </div>
+                <div class="socialImgContainer head">
+                    <a href="https://github.com/alexsath" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/github.png"></img>
+                    </a>
+                </div>
+                <div class="socialImgContainer head">
+                    <a href="https://orcid.org/0000-0002-6800-1208" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/ORCID.png"></img>
+                    </a>
+                </div>
+            </div>
+        </div> <!--END HEADER SECTION-->
         
-        <!-- <div class="sectionSeparator"></div> -->
+        <!--HEADLINE SECTION-->
+        <div class="section", id="headline">
+            <div class="headlinePadder"></div>
+            <div class="headlineBlock">
+                <h1>Data-Driven Innovation</h1>
+            </div>
+            <div class="headlinePadder"></div>
+        </div>
 
         <!--BIO SECTION-->
         <div class="section" id="bio">
@@ -34,62 +77,81 @@
                         <img id="headshot" src="docs/assets/ars_headshot.jpg"></img>
                     </div>
                     <div class="text">
-                        <h2>Data-Driven Innovation</h2>
-                        <p>I am a hardworking and passionate scientist with four years' experience 
-                            pursuing innovative data collection and de-novo data analysis for the 
-                            treatment of neurological disease.</p>
-                        <p>My background provides a unique combination of technical skills uncommon 
-                            among biological scientists:</p>
-                        <li>Competence and productivity at the bench</li>
-                        <li>Proficiency in data processing and data visualization</li>
-                        <li>Experience with bioinformatics and machine learning methods</li>
-                        <li>Uncommon achievement in scientific communication</li> 
-                        <p>In addition to my capacity for leadership and entrepreneurial spirit, 
+                        <p>
+                            I am a hardworking, data-wrangling scientist with five years' experience 
+                            in neurobiology research and in tool development through benchtop,
+                            computational, and AI workflows for novel treatments of 
+                            treatment of neurological disorders.
+                        </p>
+                        <p>
+                            My background at labs and organizations in private, public, and non-profit sectors
+                            cultivates technical and interpersonal skills in a combination uncommon 
+                            among biological scientists:
+                        </p>
+                        <ul>
+                            <li>Competence and productivity at the bench</li>
+                            <li>AI-based computational methods for image and data analysis</li>
+                            <li>Uncommon achievement in scientific communication</li>
+                            <li>Experience in leadership and organizational management</li>
+                            <li>Patience and proficiency in mentoring and teaching</li>
+                        </ul>
+                        <p>
+                            In addition to my capacity for leadership and entrepreneurial spirit, 
                             I take a needs-first approach to interpersonal relationships. 
                             I believe communication and care between peers and customers lead to better 
-                            business and to better outcomes for patients in need.</p>
+                            business and to better outcomes for patients in need.
+                        </p>
+                        <p>Let's grow together!</p>
                     </div>
                 </div>             
                 <div class="bioPadder"></div>
             </div>
-            <div class="bioColumn">
-                <div class="bioPadder"></div>
-                <div class="bioBlock" id="bb2">
-                    <p>Learn more about what I could bring to your team with the <i class="accented">links below</i> !
-                        Please also consider downloading a <a href="docs/files/ars_resume.pdf" target="_blank">
-                        pdf of my resume</a> for your records.
-                    </p>
-                    <p class="accented">Looking forward to hearing from you!</p>
+        </div>
+
+        <!--FOOTER SECTION-->
+        <div class="section" id="footerSection">
+            <div class="footerBlock">
+                <p>Learn more about what I could bring to your team with the links below!</p>
+                <p>
+                    Please also consider downloading a <a href="docs/files/ars_resume.pdf" target="_blank">
+                    pdf of my curriculum vitae</a> for your records.
+                </p>
+                <p>Looking forward to hearing from you!</p>
+            </div>
+
+            <!--FOOTER LINKS-->
+            <div class="footerBlock socials">
+                <div class="socialImgContainer foot">
+                    <a href="https://www.linkedin.com/in/alexsathler/" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/linked_in.png"></img>
+                    </a>
                 </div>
-                <div class="bioPadder"></div>
-            </div>
-        </div>
+                <div class="socialImgContainer foot">
+                    <a href="https://scholar.google.com/citations?hl=en&user=Ol7rmA4AAAAJ" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/scholar_logo.png"></img>
+                    </a>
+                </div>
+                <div class="socialImgContainer foot">
+                    <a href="https://github.com/alexsath" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/github.png"></img>
+                    </a>
+                </div>
+                <div class="socialImgContainer foot">
+                    <a href="https://orcid.org/0000-0002-6800-1208" target="_blank">
+                        <img class="socialIcon" src="docs/assets/social_media/ORCID.png"></img>
+                    </a>
+                </div>
+            </div> <!--END FOOTER LINKS-->
+        </div> <!--END FOOTER SECTION-->
 
-        <!-- <div class="sectionSeparator"></div> -->
+    </body> <!--END BODY-->
 
-        <!--LINKS SECTION-->
+    <footer>
         <div class="section" id="footer">
-            <div id="socialImgPadder"></div>
-            <div class="socialImgContainer">
-                <a href="https://www.linkedin.com/in/alexsathler/" target="_blank">
-                    <img class="socialIcon" src="docs/assets/social_media/linked_in.png"></img>
-                </a>
-            </div>
-            <div class="socialImgContainer">
-                <a href="https://scholar.google.com/citations?hl=en&user=Ol7rmA4AAAAJ" target="_blank">
-                    <img class="socialIcon" src="docs/assets/social_media/scholar_logo.png"></img>
-                </a>
-            </div>
-            <div class="socialImgContainer">
-                <a href="https://github.com/alexsath" target="_blank">
-                    <img class="socialIcon" src="docs/assets/social_media/github.png"></img>
-                </a>
-            </div>
-            <div class="socialImgContainer">
-                <a href="https://orcid.org/0000-0002-6800-1208" target="_blank">
-                    <img class="socialIcon" src="docs/assets/social_media/ORCID.png"></img>
-                </a>
+            <div class="footerBlock">
+                <p>&copy; 2020-2025 Alex R. Sathler</p>
             </div>
         </div>
-    </body>
+    </footer>
+
 </html>

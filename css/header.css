@@ -1,0 +1,143 @@
+/* -------------- */
+/* HEADER SECTION */
+/* -------------- */
+
+/* Colors */
+:root {
+    --primary-color: #BE713B; 
+    --secondary-color: #4E2A84;
+    --accent-color: #1C3A13;
+    --background-color: #F5F5F5;
+    --text-color: #172121;
+}
+
+/* Dynamic Buttons */
+.button {
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+}
+
+#header {
+    padding: 1% 5% 1% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    z-index: 2;
+}
+
+#header h1 {
+    color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+}
+
+.headerBlock {
+    flex: 1 1 auto;
+    align-items: center;
+}
+
+.headerBlock.social {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.headerBlock.navigation {
+    align-items: center;
+}
+
+#header nav {
+    align-items: center;
+}
+
+#headerMenu {
+    display: flex;
+}
+
+.headerBlock.ul {
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#headerMenu li {
+    list-style-type: none;
+    font-family: "Merriwether", serif;
+    color: var(--background-color);
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#headerMenu a {
+    text-decoration: none;
+    color: var(--background-color);
+    display: block;
+}
+
+#headerMenu li:hover {
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    border-radius: 5px;
+}
+
+#headerMenu li:hover a {
+    color: var(--primary-color);
+}
+
+.socialImgContainer.head {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+
+/* Media queries for responsive resizing */
+@media (min-width: 576px) {
+    .socialIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (min-width: 768px) {
+    .socialIcon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (min-width: 992px) {
+    .socialIcon {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .socialIcon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+#footer {
+    padding: 1% 5% 1% 5%;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    z-index: 2;
+}
+
+#footer p {
+    color: var(--background-color);
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}

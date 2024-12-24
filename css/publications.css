@@ -1,0 +1,25 @@
+:root {
+    --primary-color: #BE713B; 
+    --secondary-color: #6B0504;
+    --accent-color: #26547C;
+    --background-color: #F5F5F5;
+    --text-color: #172121;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#content {
+    height: 1800px;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    font-size: 1.33em;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+}
