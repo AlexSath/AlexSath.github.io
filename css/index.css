@@ -52,13 +52,12 @@ body {
 }
 
 #headline h1 {
-    font-size: 4em;
-    font-weight: bold;
+    font-size: 3.5em;
     max-width: 100%;
     text-align: center;
     margin: 0;
     padding: 0;
-    color: var(--primary-color);
+    color: var(--background-color);
 }
 
 /* ----------- */
