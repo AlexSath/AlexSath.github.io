@@ -12,14 +12,107 @@ body {
 }
 
 #content {
-    height: 1800px;
-    padding-top: 5%;
-    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
-p {
-    font-size: 1.33em;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
+#content td {
+    padding: 2.5% 1% 2.5% 1%;
+    /* width: 33%; */
+}
+
+.contentBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10%
+}
+
+.iconBlock {
+    margin: 2% 25% 0% 25%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.leftColumn {
+    text-align: right;
+}
+
+.middleColumn {
+    text-align: center;
+}
+
+.rightColumn {
+    text-align: left;
+}
+
+.experienceIcon {
+    border-radius: 20%;
+    margin: 25%;
+}
+
+/* Media queries for responsive resizing */
+@media (min-width: 1px) {
+    .experienceIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (min-width: 576px) {
+    .experienceIcon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (min-width: 768px) {
+    .experienceIcon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (min-width: 992px) {
+    .experienceIcon {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .experienceIcon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+#quote  {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--text-color);
+}
+
+#quote .accented {
+    font-size: 5em;
+    font-family: "Times New Roman", Times, serif;
+    color: var(--secondary-color);
+}
+
+.leftQuoteContainer {
+    text-align: right;
+}
+
+.centerQuoteContainer {
+    text-align: center;
+}
+
+.centerQuoteContainer p {
+    font-size: 1.5em;
+    color: var(--background-color);
+}
+
+.rightQuoteContainer {
+    text-align: left;
 }
