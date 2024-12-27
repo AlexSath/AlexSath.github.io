@@ -30,6 +30,10 @@ body {
     padding-bottom: 5%
 }
 
+#suppExperience.contentBlock, #education.contentBlock {
+    padding-top: 5%;
+}
+
 .iconBlock {
     margin: 2% 25% 0% 25%;
     display: flex;
@@ -92,26 +96,11 @@ body {
     }
 }
 
-#quote  {
-    padding-top: 5%;
-    padding-bottom: 5%;
+#quote, #awards  {
+    padding-top: 3%;
+    padding-bottom: 3%;
     display: flex;
-    flex-direction: row;
     background-color: var(--text-color);
-}
-
-#quote .accented {
-    font-size: 10em;
-    font-family: "Lancelot", serif;
-    color: var(--secondary-color);
-}
-
-.leftQuoteContainer {
-    text-align: right;
-}
-
-.centerQuoteContainer {
-    text-align: center;
 }
 
 #quote p {
@@ -120,7 +109,11 @@ body {
     text-align: center;
 }
 
-.rightQuoteContainer {
-    text-align: left;
-    align-content: flex-end;
+#awards h2 {
+    color: var(--secondary-color);
+}
+
+#awards p {
+    color: var(--background-color);
+    text-align: center;
 }
