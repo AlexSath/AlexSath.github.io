@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 10%
+    padding-bottom: 5%
 }
 
 .iconBlock {
@@ -43,6 +43,8 @@ body {
 
 .middleColumn {
     text-align: center;
+    color: var(--accent-color);
+    font-weight: bold;
 }
 
 .rightColumn {
@@ -113,8 +115,9 @@ body {
 }
 
 #quote p {
-    font-size: 2em;
+    font-size: 1.75em;
     color: var(--background-color);
+    text-align: center;
 }
 
 .rightQuoteContainer {

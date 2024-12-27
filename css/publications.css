@@ -41,6 +41,8 @@ body {
 }
 
 .contentBlock {
+    padding-left: 25%;
+    padding-right: 25%;
     flex-grow: 1;
 }
 

@@ -105,8 +105,8 @@ body {
     flex: 2
 }
 
-.text > * {
-    font-size: 1.33em;
+.text p, li {
+    font-size: 1.5em;
 }
 
 #headshot {
