@@ -6,6 +6,16 @@
     --text-color: #172121;
 }
 
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#content {
+    flex-direction: column;
+    justify-content: center;
+}
+
 .contentBlock {
     padding-left: 25%;
     padding-right: 25%;
@@ -86,6 +96,9 @@
     width: 90%;
     margin-left: 5%;
     border-radius: 50%;
+    border-color: var(--accent-color);
+    border-style: solid;
+    border-width: 5px;
     margin-bottom: 5%;
 }
 
