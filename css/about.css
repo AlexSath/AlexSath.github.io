@@ -17,7 +17,7 @@ body {
 }
 
 #content td {
-    padding: 2.5% 1% 2.5% 1%;
+    padding: 1.5% 0.5% 1.5% 0.5%;
     /* width: 33%; */
 }
 
@@ -49,6 +49,7 @@ body {
     text-align: center;
     color: var(--accent-color);
     font-weight: bold;
+    width: 50%;
 }
 
 .rightColumn {
