@@ -3,7 +3,7 @@
     --secondary-color: #6B0504;
     --accent-color: #26547C;
     --background-color: #F5F5F5;
-    --text-color: #172121;
+    --text-color: #161616;
 }
 
 body {
@@ -22,4 +22,10 @@ p {
     font-size: 1.33em;
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
+}
+
+.projectBlock {
+    padding-bottom: 2.5%;
+    padding-left: 25%;
+    padding-right: 25%;
 }
