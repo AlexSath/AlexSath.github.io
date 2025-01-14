@@ -95,7 +95,7 @@ body {
     color: var(--text-color);
 }
 
-.educationListBlock h6 {
+#institutionName {
     font-size: 1em;
     font-family: 'Monserrat', sans-serif;
     color: #656262;
