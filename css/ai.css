@@ -95,7 +95,7 @@ body {
     color: var(--text-color);
 }
 
-.educationListBlock.institutionName {
+.educationListBlock .institutionName {
     color: #656262;
 }
 
