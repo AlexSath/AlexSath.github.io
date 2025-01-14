@@ -17,11 +17,11 @@ body {
     justify-content: center;
 }
 
-#content p {
+/* #content p {
     font-size: 1.33em;
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
-}
+} */
 
 #content h2 {
     text-align: left;
@@ -90,6 +90,12 @@ body {
 }
 
 .educationListBlock h5 {
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+}
+
+.educationListBlock h6 {
     font-size: 1em;
     font-family: 'Monserrat', sans-serif;
     color: #656262;
