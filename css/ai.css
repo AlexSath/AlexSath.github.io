@@ -1,0 +1,134 @@
+:root {
+    --primary-color: #BE713B; 
+    --secondary-color: #6B0504;
+    --accent-color: #26547C;
+    --background-color: #F5F5F5;
+    --text-color: #161616;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#content {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+#content p {
+    font-size: 1.33em;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+}
+
+#content h2 {
+    text-align: left;
+    font-size: 2em;
+}
+
+
+.innerContentBlock {
+    padding-bottom: 2.5%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+/* ----------- */
+/* ---ABOUT--- */
+/* ----------- */
+#aboutBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#aboutBlock h2 {
+    text-align: center;
+    font-size: 2.66em;
+}
+
+.headshotImg {
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+}
+
+.aboutBlockText {
+    padding-top: 2.5%;
+}
+
+.aboutBlockListContainer {
+    padding-top: 2.5%;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: space-evenly;
+}
+
+.aboutBlockList {
+    padding-bottom: 5%;
+    flex: 1;
+}
+
+.educationListBlock {
+    display: flex;
+    flex-direction: row;
+}
+
+.educationListText {
+    padding-left: 2.5%;
+    padding-bottom: 2.5%;
+}
+
+.educationListBlock h4 {
+    font-size: 1.25em;
+    font-family: 'Merriweather', serif;
+    color: var(--text-color);
+}
+
+.educationListBlock h5 {
+    font-size: 1em;
+    font-family: 'Monserrat', sans-serif;
+    color: #656262;
+}
+
+@media (min-width: 1px) {
+    .educationListIcon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* ----------- */
+/* --CONTENT-- */
+/* ----------- */
+.projectBlockHeader {
+    padding-bottom: 2.5%;
+    font-size: 1.33em;
+}
+
+.innerContentBlock h3 {
+    font-size: 1.75em;
+    text-align: center;
+    color: var(--accent-color)
+}
+
+.projectBlockContent {
+    padding-top: 1%;
+    display: flex;
+    flex-direction: row;
+}
+
+.projectBlockText {
+    padding-left: 2.5%;
+}
+
+@media (min-width: 1px) {
+    .projectImg {
+        width: 384px;
+        height: 384px;
+    }
+}
