@@ -136,3 +136,11 @@ body {
         height: 384px;
     }
 }
+
+.headerBlock.social.content {
+    align-items:flex-start;
+}
+
+.socialIcon.content {
+    filter: none;
+}
