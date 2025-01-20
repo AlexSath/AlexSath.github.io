@@ -12,7 +12,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
         <link rel="manifest" href="../site.webmanifest">
         <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="stylesheet" href="../css/ai_header.css">
+        <!-- <link rel="stylesheet" href="../css/ai_header.css"> -->
         <link rel="stylesheet" href="../css/ai.css">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#f5f5f5">
@@ -21,189 +21,233 @@
 
     <body>
         <!--HEADER SECTION-->
-        <div class="section" id="header">
+        <section id="header">
             <div class="headerBlock">
                 <h1>Alex R. Sathler</h1>
             </div>
             <div class="headerBlock social">
-                <div class="socialImgContainer foot">
+                <div class="socialIconBlock">
                     <a href="mailto:alexrsathler@gmail.com" target="_blank">
                         <img class="socialIcon" src="../docs/assets/social_media/mail_icon.png"></img>
                     </a>
                 </div>
-                <div class="socialImgContainer foot">
+                <div class="socialIconBlock">
                     <a href="https://www.linkedin.com/in/alexsathler/" target="_blank">
                         <img class="socialIcon" src="../docs/assets/social_media/linkedin-rounded-svgrepo-com.svg"></img>
                     </a>
                 </div>
-                <div class="socialImgContainer foot">
+                <div class="socialIconBlock">
                     <a href="https://github.com/alexsath" target="_blank">
                         <img class="socialIcon" src="../docs/assets/social_media/iconmonstr-github-1.svg"></img>
                     </a>
                 </div>
-                <div class="socialImgContainer foot">
+                <div class="socialIconBlock">
                     <a href="https://scholar.google.com/citations?hl=en&user=Ol7rmA4AAAAJ" target="_blank">
                         <img class="socialIcon" src="../docs/assets/social_media/icons8-google-scholar-100.svg"></img>
                     </a>
                 </div>
-                <div class="socialImgContainer foot">
+                <div class="socialIconBlock">
                     <a href="https://orcid.org/0000-0002-6800-1208" target="_blank">
                         <img class="socialIcon" src="../docs/assets/social_media/orcid-svgrepo-com.svg"></img>
                     </a>
                 </div>
             </div>
-        </div> <!--END HEADER SECTION-->
+        </section>
 
         <!--CONTENT SECTION-->
-        <div class="section" id="content">
+        <section id="about">
             <div class="contentBlock">
-                <div class="innerContentBlock" id="aboutBlock">
-                    <div class="aboutBlockHeadshot">
-                        <img class="headshotImg" src="../docs/assets/ars_headshot_square.jpg"></img>
-                    </div>
-                    <div class="aboutBlockText">
-                        <h2>
-                            Hi, I'm Alex.
-                        </h2>
-                        <p>
-                            I am an Associate Computer Vision Researcher with strong programming and image analysis skills for machine 
-                            learning, computer vision, and data science. As a Computer Vision Researcher on the AI team at <a href="https://phioptics.com">
-                            Phi Optics, Inc.</a> I use local and cloud-based tools to train segmentation models driving insights into complex biological 
-                            contexts captured Phi Optics' unique imaging modality. Beyond expertise in ML and Data-focused python programming, I have
-                            skills in data visualization and UX. Most recently, a test app I developed integrates our novel ML approach with
-                            a GUI has driven investment and opened doors into bioprocess monitoring & control. 
-                        </p>
-                        <p>
-                            Others have described me as a hard worker, excellent communicator, and team player. Previously, I was a Computer Vision &amp; 
-                            Neuroscience Research Fellow at the National Institutes of Health, an Image Analyst and Cell Biologist at Orgeon State
-                            University, and a Bioinformatics intern at the Earle. A. Chiles Research Institute.
-                        </p>
-                        <p>
-                            If you are looking for a driven AI / ML Engineer eager to accelerate your team's mission to solve challenging problems
-                            in computer vision, generative AI, or AI applications and integrations, I hope you consider me. Please check out the projects
-                            I have highlighted below or <a href="../docs/files/ARS_ML_Resume.pdf">download my resume</a> to learn more.  
-                        </p>
-                    </div>
-                    <div class="aboutBlockListContainer">
-                        <div class="aboutBlockList">
-                            <div class="educationListBlock">
-                                <h3>Interests</h3>
-                            </div>
-                            <div class="educationListBlock">
-                                <ul>
-                                    <li>Computer Vision</li>
-                                    <li>Large Language Models</li>
-                                    <li>Predictive Modeling</li>
-                                    <li>Data Analysis &amp; Visualization</li>
-                                    <li>Neuroscience &amp; Healthcare</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="aboutBlockList">
-                            <div class="educationListBlock">
-                                <h3>Education</h3>
-                            </div>
-                            <div class="educationListBlock">
-                                <div class="educationListIconBlock">
-                                    <img class="educationListIcon" src="../docs/assets/experience_logos/osu_logo.png"></img>
-                                </div>
-                                <div class="educationListText">
-                                    <h4>B.S. Biochemistry<br>&amp; Molecular Biology</h4>
-                                    <h5>Minor: <strong><i>Biological Data Science</i></strong></h5>
-                                    <h5 class="institutionName">Oregon State University</h5>
-                                </div>
-                            </div>
-                            <div class="educationListBlock">
-                                <div class="educationListIconBlock">
-                                    <img class="educationListIcon" src="../docs/assets/experience_logos/udacity_logo.png"></img>
-                                </div>
-                                <div class="educationListText">
-                                    <h4>Nanodegree. Machine<br>Learning with Tensorflow</h4>
-                                    <h5 class="institutionName">Udacity</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="contentSubBlock headshot">
+                    <img class="headshotImg" src="../docs/assets/ars_headshot_square.jpg"></img>
                 </div>
-                <div class="innerContentBlock" id="projectBlock">
-                    <div class="projectBlockHeader">
-                        <h2>Projects</h2>
-                        <p>Things I have done at work, at school, and beyond!</p>
-                    </div>
-                    <h3>AI-based Cell Instance Segmentation for Quantitative Phase Imaging</h3>
-                    <div class="projectBlockContent">
-                        <div class="projectBlockImg">
-                            <img class="projectImg" src="../docs/assets/cellvista_ai.jpeg"></img>
-                        </div>
-                        <div class="projectBlockText">
-                            <p><strong>Languages:</strong> Python • C++ </p>
-                            <p><strong>Frameworks:</strong> Tensorflow • PyTorch • Detectron2 • TensorRT • ONNX • Vertex AI • Lightning AI • OpenCV • Qt</p>
-                            <p><strong>Domains:</strong> AI • Computer Vision • Cell Biology • Bioprocess Engineering • UX</p>
-                            <p>
-                                <strong>Destription:</strong> Through local and cloud-based workflows, I trained Detectron2 instance segmentation
-                                models to distinguish between cellular states in images taken from Phi Optics' Quantitative Phase Imaging microscopes.
-                                To maximize performance, I implemented convolutional backbones in TensorFlow and Pytorch and created robust dataset
-                                pre-processing workflows. In Python, C++ and Qt, I also developed a test application integrating ML inferrence with a GUI
-                                using ONNX and TensorRT engines. This app has been instrumental in assessing interest from investors and biomanufacturing
-                                firms for Phi Optics' novel ML-based bioprocess monitoring &amp; control software.
-                            </p>
-                        </div>
-                    </div>
+                <div class="contentSubBlock">
+                    <h2>
+                        Hi, I'm Alex.
+                    </h2>
+                    <p>
+                        I am an AI Researcher and Engineer with strong programming and image analysis skills for machine 
+                        learning, computer vision, and data science. As a Computer Vision Researcher on the AI team at <a href="https://phioptics.com">
+                        Phi Optics, Inc.</a> I use local and cloud-based tools to train segmentation models driving insights into complex biological 
+                        contexts captured Phi Optics' unique imaging modality. Beyond expertise in ML and Data-focused python programming, I have
+                        skills in data visualization and UX. Most recently, a test app I developed integrates our novel ML approach with
+                        a GUI has driven investment and opened doors into bioprocess monitoring & control. 
+                    </p>
+                    <p>
+                        Others have described me as a hard worker, excellent communicator, and team player. Previously, I was a Computer Vision &amp; 
+                        Neuroscience Research Fellow at the National Institutes of Health, an Image Analyst and Cell Biologist at Orgeon State
+                        University, and a Bioinformatics intern at the Earle. A. Chiles Research Institute.
+                    </p>
                 </div>
-                <div class="innerContentBlock" id="projectBlock">
-                    <h3>AI-based Phase Separation Phenotype Segmentation in Neurons</h3>
-                    <div class="projectBlockContent">
-                        <div class="projectBlockImg">
-                            <img class="projectImg" src="../docs/assets/classification.jpg"></img>
+                <div class="contentSubBlock">
+                    <h3>
+                        Goal
+                    </h3>
+                    <p>
+                        I am eager to find a position as a contract or salaried AI / ML Engineer on a team solving challenging problems in applying
+                        or integrating ML tools into their workflows. If that sounds like your or your team, I would love to discuss whether my skillset
+                        could make your or your clients' lives easier. Please check out the projects I have highlighted below or 
+                        <a href="../docs/files/AlexRS_Tech_CV_25-01-19.pdf">download my resume</a> to learn more.  
+                    </p>
+                </div>
+                <div class="contentSubBlock">
+                    <h3>
+                        Skills
+                    </h3>
+                    <p>
+                        <strong>Business</strong>: Product development · Monday · Jira · grant writing · email marketing · social media marketing · 
+                        venture research · event planning · Portuguese · French · Spanish (beginner)
+                    </p>
+                    <p>
+                        <strong>Technical</strong>: Python · C++ · AI · machine learning · computer vision · TensorFlow · PyTorch · OpenCV · Jupyter · 
+                        Matplotlib · Seaborn · Pandas · Vertex AI · Lightning AI · TensorRT · ONNX · Slurm · HPC · Q
+                    </p>
+                </div>
+                <div class="contentSubBlock" id="columnContent">
+                    <div class="aboutBlockList">
+                        <div class="educationListBlock">
+                            <h3>Interests</h3>
                         </div>
-                        <div class="projectBlockText">
-                            <p><strong>Languages:</strong> Python</p>
-                            <p><strong>Frameworks:</strong> Tensorflow • HPC • Slurm • OpenCV</p>
-                            <p><strong>Domains:</strong> AI • Computer Vision • Neurobiology • Aging • Biochemistry • Cell Biology • Phase Separation</p>
-                            <p>
-                                <strong>Destription:</strong> To classify and analyze visually similar but chemically distinct images of sub-cellular
-                                structures in cultured neurons, I used Python, Tensorflow, and Slurm-based HPC systems to train UNet models with
-                                InceptionV3 backbones. With minimal training input (6 manually annotated images), my models achieved 96% pixel-level
-                                classification accuracy and over 85% semantic segmentation IoU, significantly accelerating our understanding of 
-                                age-related changes in neuronal metabolism and innovating new ways to analyze phase separation in cell images.
-                            </p>
+                        <div class="educationListBlock">
+                            <ul>
+                                <li>Computer Vision</li>
+                                <li>Large Language Models</li>
+                                <li>Predictive Modeling</li>
+                                <li>Data Analysis &amp; Visualization</li>
+                                <li>Neuroscience &amp; Healthcare</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="innerContentBlock" id="projectBlock">
-                    <h3>ProDiVis: <u>Pro</u>tein <u>Di</u>tribution <u>Vis</u>ualization</h3>
-                    <div class="projectBlockContent">
-                        <div class="projectBlockImg">
-                            <img class="projectImg" src="../docs/assets/prodivis_heatmap.png"></img>
+                    <div class="aboutBlockList">
+                        <div class="educationListBlock">
+                            <h3>Education</h3>
                         </div>
-                        <div class="projectBlockText">
-                            <p><strong>Languages:</strong> Python</p>
-                            <p><strong>Frameworks:</strong> Jupyter • OpenCV • Matplotlib</p>
-                            <p><strong>Domains:</strong> Neurobiology • Oncology • Image Analysis • Biochemistry • Cell Biology</p>
-                            <p>
-                                <strong>Destription:</strong> To investigate how differentially modified proteins could 
-                                cause a pro-cancer metabolic switch in cellular models of Glioblastoma Multiforme, I co-developed a confocal
-                                microscopy-based z-stack normalization and visualization pipeline dubbed Protein Distribution Visualzation (ProDiVis).
-                                The pipeline leverages common python packages like Jupyter, OpenCV, and Matplotlib to significantly
-                                enhance biological insights at deep focal planes in 3D imaging.
-                            </p>
-                            <div class="headerBlock social conent">
-                                <div class="socialImgContainer foot">
-                                    <a href="https://github.com/FrancoLaboratory/ProDiVis" target="_blank">
-                                        <img class="socialIcon content" src="../docs/assets/social_media/github.png"></img>
-                                    </a>
-                                </div>
-                                <div class="socialImgContainer foot">
-                                    <a href="https://pubmed.ncbi.nlm.nih.gov/39376633/" target="_blank">
-                                        <img class="socialIcon content" src="../docs/assets/social_media/article_icon.png"></img>
-                                    </a>
-                                </div>
+                        <div class="educationListBlock">
+                            <div class="educationListIconBlock">
+                                <img class="educationIcon" src="../docs/assets/experience_logos/osu_logo.png"></img>
+                            </div>
+                            <div class="educationListText">
+                                <h4>B.S. Biochemistry<br>&amp; Molecular Biology</h4>
+                                <h5>Minor: <strong>Biological Data Science</strong></h5>
+                                <p class="institutionName">Oregon State University</p>
+                            </div>
+                        </div>
+                        <div class="educationListBlock">
+                            <div class="educationListIconBlock">
+                                <img class="educationIcon pcc" src="../docs/assets/experience_logos/PCC_logo.png"></img>
+                            </div>
+                            <div class="educationListText">
+                                <h4>A.A.S. Bioscience Technology</h4>
+                                <p class="institutionName">Portland Community College</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aboutBlockList">
+                        <div class="educationListBlock">
+                            <h3>Certifications</h3>
+                        </div>
+                        <div class="educationListBlock">
+                            <div class="educationListIconBlock">
+                                <img class="educationIcon" src="../docs/assets/experience_logos/udacity_logo.png"></img>
+                            </div>
+                            <div class="educationListText">
+                                <h4>Generative AI</h4>
+                                <p class="institutionName">Udacity (In Progress)</p>
+                            </div>
+                        </div>
+                        <div class="educationListBlock">
+                            <div class="educationListIconBlock">
+                                <img class="educationIcon" src="../docs/assets/experience_logos/udacity_logo.png"></img>
+                            </div>
+                            <div class="educationListText">
+                                <h4>Machine Learning<br>with Tensorflow</h4>
+                                <p class="institutionName">Udacity</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> <!--END CONTENT SECTION-->
+        </section> <!-- END ABOUT SECTION-->
+
+        <!-- START PROJECT SECTION -->
+        <section id="projects">
+            <div class="projectBlockHeader">
+                <h2>Projects</h2>
+                <p>Things I have done at work, at school, and beyond!</p>
+            </div>
+            <div class="projectBlock">
+                <h3>AI-based Cell Instance Segmentation for Quantitative Phase Imaging</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/cellvista_ai.jpeg"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python • C++ </p>
+                        <p><strong>Frameworks:</strong> Tensorflow • PyTorch • Detectron2 • TensorRT • ONNX • Vertex AI • Lightning AI • OpenCV • Qt</p>
+                        <p><strong>Domains:</strong> AI • Computer Vision • Cell Biology • Bioprocess Engineering • UX</p>
+                        <p>
+                            <strong>Destription:</strong> Through local and cloud-based workflows, I trained Detectron2 instance segmentation
+                            models to distinguish between cellular states in images taken from Phi Optics' Quantitative Phase Imaging microscopes.
+                            To maximize performance, I implemented convolutional backbones in TensorFlow and Pytorch and created robust dataset
+                            pre-processing workflows. In Python, C++ and Qt, I also developed a test application integrating ML inferrence with a GUI
+                            using ONNX and TensorRT engines. This app has been instrumental in assessing interest from investors and biomanufacturing
+                            firms for Phi Optics' novel ML-based bioprocess monitoring &amp; control software.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="projectBlock">
+                <h3>AI-based Phase Separation Phenotype Segmentation in Neurons</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/classification.jpg"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python</p>
+                        <p><strong>Frameworks:</strong> Tensorflow • HPC • Slurm • OpenCV</p>
+                        <p><strong>Domains:</strong> AI • Computer Vision • Neurobiology • Aging • Biochemistry • Cell Biology • Phase Separation</p>
+                        <p>
+                            <strong>Destription:</strong> To classify and analyze visually similar but chemically distinct images of sub-cellular
+                            structures in cultured neurons, I used Python, Tensorflow, and Slurm-based HPC systems to train UNet models with
+                            InceptionV3 backbones. With minimal training input (6 manually annotated images), my models achieved 96% pixel-level
+                            classification accuracy and over 85% semantic segmentation IoU, significantly accelerating our understanding of 
+                            age-related changes in neuronal metabolism and innovating new ways to analyze phase separation in cell images.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="projectBlock">
+                <h3>ProDiVis: <u>Pro</u>tein <u>Di</u>tribution <u>Vis</u>ualization</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/prodivis_heatmap.png"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python</p>
+                        <p><strong>Frameworks:</strong> Jupyter • OpenCV • Matplotlib</p>
+                        <p><strong>Domains:</strong> Neurobiology • Oncology • Image Analysis • Biochemistry • Cell Biology</p>
+                        <p>
+                            <strong>Destription:</strong> To investigate how differentially modified proteins could 
+                            cause a pro-cancer metabolic switch in cellular models of Glioblastoma Multiforme, I co-developed a confocal
+                            microscopy-based z-stack normalization and visualization pipeline dubbed Protein Distribution Visualzation (ProDiVis).
+                            The pipeline leverages common python packages like Jupyter, OpenCV, and Matplotlib to significantly
+                            enhance biological insights at deep focal planes in 3D imaging.
+                        </p>
+                        <div class="headerBlock social">
+                            <div class="socialIconBlock">
+                                <a href="https://github.com/FrancoLaboratory/ProDiVis" target="_blank">
+                                    <img class="socialIcon" src="../docs/assets/social_media/github.png"></img>
+                                </a>
+                            </div>
+                            <div class="socialIconBlock">
+                                <a href="https://pubmed.ncbi.nlm.nih.gov/39376633/" target="_blank">
+                                    <img class="socialIcon" src="../docs/assets/social_media/article_icon.png"></img>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- END PROJECT SECTION -->
 
     </body> <!--END BODY-->
 
@@ -214,4 +258,5 @@
             </div>
         </div>
     </footer>
+
 </html>
