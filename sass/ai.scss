@@ -105,6 +105,7 @@ section {
 .socialIconBlock {
     @media (max-width: $mobile-breakpoint) {
         padding-top: 1.5%;
+        padding-right: 2.5%;
     }
     @media (min-width: $desktop-breakpoint) {
         padding-left: 2.5%;

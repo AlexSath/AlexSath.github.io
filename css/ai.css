@@ -63,6 +63,7 @@ section {
 @media (max-width: 380px) {
   .socialIconBlock {
     padding-top: 1.5%;
+    padding-right: 2.5%;
   }
 }
 @media (min-width: 1080px) {
