@@ -197,11 +197,7 @@ section {
 #about .contentSubBlock .educationListBlock {
   display: flex;
   flex-direction: row;
-}
-@media (max-width: 380px) {
-  #about .contentSubBlock .educationListBlock {
-    flex-direction: column;
-  }
+  flex-wrap: wrap;
 }
 #about .contentSubBlock .educationListBlock li {
   margin-bottom: 1%;

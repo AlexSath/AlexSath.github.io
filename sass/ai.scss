@@ -189,7 +189,9 @@ section {
         }
 
         .educationListBlock {
-            @include flex-center(row);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
 
             li {
                 @include client-responsive-text(3.33);
