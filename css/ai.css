@@ -74,34 +74,16 @@ section {
 .socialIconBlock .socialIcon {
   filter: invert(1);
 }
-@media (min-width: 1px) {
+@media (max-width: 380px) {
   .socialIconBlock .socialIcon {
-    width: 12px;
-    height: 12px;
+    width: 13.5px;
+    height: 13.5px;
   }
 }
-@media (min-width: 576px) {
-  .socialIconBlock .socialIcon {
-    width: 18px;
-    height: 18px;
-  }
-}
-@media (min-width: 768px) {
-  .socialIconBlock .socialIcon {
-    width: 24px;
-    height: 24px;
-  }
-}
-@media (min-width: 992px) {
-  .socialIconBlock .socialIcon {
-    width: 30px;
-    height: 30px;
-  }
-}
-@media (min-width: 1200px) {
+@media (min-width: 1080px) {
   .socialIconBlock .socialIcon {
     width: 36px;
-    height: 36px;
+    width: 36px;
   }
 }
 

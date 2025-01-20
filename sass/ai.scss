@@ -113,7 +113,7 @@ section {
 
     .socialIcon {
         filter: invert(1);
-        @include responsive-icon(("1px": 12px, "576px": 18px, "768px": 24px, "992px": 30px, "1200px": 36px));
+        @include client-responsive-icon(0.75);
     }
 }
 
