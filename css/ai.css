@@ -6,7 +6,7 @@ body {
 }
 @media (max-width: 380px) {
   body {
-    font-size: 0.75em;
+    font-size: 0.99em;
   }
 }
 @media (min-width: 1080px) {
@@ -50,8 +50,15 @@ section {
   }
 }
 
-.socialIconBlock {
-  padding-left: 2.5%;
+@media (max-width: 380px) {
+  .socialIconBlock {
+    padding-top: 1.5%;
+  }
+}
+@media (min-width: 1080px) {
+  .socialIconBlock {
+    padding-top: 2.5%;
+  }
 }
 .socialIconBlock .socialIcon {
   filter: invert(1);
@@ -111,21 +118,8 @@ section {
 #header .headerBlock.social {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-end;
-}
-@media (max-width: 380px) {
-  #header .headerBlock.social {
-    flex-direction: column;
-  }
-}
-#header nav {
-  display: flex;
-  flex-direction: row;
-}
-@media (max-width: 380px) {
-  #header nav {
-    flex-direction: column;
-  }
 }
 
 #about {
@@ -142,8 +136,8 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock.headshot .headshotImg {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
   }
 }
 @media (min-width: 1080px) {
@@ -158,7 +152,7 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock h2 {
-    font-size: 1.5em;
+    font-size: 1.98em;
   }
 }
 @media (min-width: 1080px) {
@@ -168,6 +162,16 @@ section {
 }
 #about .contentSubBlock h3 {
   text-align: center;
+}
+@media (max-width: 380px) {
+  #about .contentSubBlock h3 {
+    font-size: 1.32em;
+  }
+}
+@media (min-width: 1080px) {
+  #about .contentSubBlock h3 {
+    font-size: 1.5em;
+  }
 }
 #about .contentSubBlock#columnContent {
   display: flex;
@@ -193,7 +197,7 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock .educationListBlock li {
-    font-size: 0.8325em;
+    font-size: 1.0989em;
   }
 }
 @media (min-width: 1080px) {
@@ -206,8 +210,8 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock .educationListBlock .educationIcon {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
   }
 }
 @media (min-width: 1080px) {
@@ -227,7 +231,7 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock .educationListBlock h4 {
-    font-size: 0.83em;
+    font-size: 1.0956em;
   }
 }
 @media (min-width: 1080px) {
@@ -242,7 +246,7 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock .educationListBlock h5 {
-    font-size: 0.625em;
+    font-size: 0.825em;
   }
 }
 @media (min-width: 1080px) {
@@ -255,7 +259,7 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock .educationListBlock p {
-    font-size: 0.75em;
+    font-size: 0.99em;
   }
 }
 @media (min-width: 1080px) {
@@ -273,7 +277,7 @@ section {
 }
 @media (max-width: 380px) {
   #projects .projectBlockHeader h2 {
-    font-size: 1.5em;
+    font-size: 1.98em;
   }
 }
 @media (min-width: 1080px) {
@@ -293,7 +297,7 @@ section {
 }
 @media (max-width: 380px) {
   #projects .projectBlock h3 {
-    font-size: 1em;
+    font-size: 1.32em;
   }
 }
 @media (min-width: 1080px) {
@@ -317,14 +321,19 @@ section {
 }
 @media (max-width: 380px) {
   #projects .projectBlock .projectBlockContent .projectImg {
-    width: 96px;
-    height: 96px;
+    width: 144px;
+    height: 144px;
   }
 }
 @media (min-width: 1080px) {
   #projects .projectBlock .projectBlockContent .projectImg {
     width: 384px;
     width: 384px;
+  }
+}
+@media (max-width: 380px) {
+  #projects .projectBlock .projectBlockContent .projectBlockText {
+    margin-left: 1.5%;
   }
 }
 @media (min-width: 1080px) {
@@ -335,12 +344,8 @@ section {
 #projects .projectBlock .headerBlock.social {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: left;
-}
-@media (max-width: 380px) {
-  #projects .projectBlock .headerBlock.social {
-    flex-direction: column;
-  }
 }
 #projects .projectBlock .headerBlock.social .socialIconBlock {
   padding-left: 0%;
