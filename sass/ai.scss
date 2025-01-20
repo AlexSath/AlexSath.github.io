@@ -143,7 +143,12 @@ section {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: flex-end;
+            @media (max-width: $mobile-breakpoint) {
+                justify-content: flex-end;
+            }
+            @media (min-width: $desktop-breakpoint) {
+                justify-content: flex-start;
+            }
 
         }
     }

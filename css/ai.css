@@ -139,7 +139,16 @@ section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;
+}
+@media (max-width: 380px) {
+  #header .headerBlock.social {
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 1080px) {
+  #header .headerBlock.social {
+    justify-content: flex-start;
+  }
 }
 
 #about {
