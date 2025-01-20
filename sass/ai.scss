@@ -30,8 +30,8 @@ $desktop-breakpoint: 1080px;
 
 @mixin client-responsive-icon($size) {
     @media (max-width: $mobile-breakpoint) {
-        width: 24px * $size;
-        height: 24px * $size;
+        width: 28px * $size;
+        height: 28px * $size;
     }
     @media (min-width: $desktop-breakpoint) {
         width: 48px * $size;
