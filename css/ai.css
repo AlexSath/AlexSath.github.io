@@ -362,7 +362,7 @@ section {
 }
 @media (max-width: 380px) {
   #projects .projectBlock .projectBlockContent .projectBlockText {
-    margin-left: 1.5%;
+    margin-top: 2.5%;
   }
 }
 @media (min-width: 1080px) {
