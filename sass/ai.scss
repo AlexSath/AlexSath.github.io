@@ -30,8 +30,8 @@ $desktop-breakpoint: 1080px;
 
 @mixin client-responsive-icon($size) {
     @media (max-width: $mobile-breakpoint) {
-        width: 12px * $size;
-        height: 12px * $size;
+        width: 18px * $size;
+        height: 18px * $size;
     }
     @media (min-width: $desktop-breakpoint) {
         width: 48px * $size;
@@ -41,7 +41,7 @@ $desktop-breakpoint: 1080px;
 
 @mixin client-responsive-header($size) {
     @media (max-width: $mobile-breakpoint) {
-        font-size: 0.5em * $size;
+        font-size: 0.66em * $size;
     }
     @media (min-width: $desktop-breakpoint) {
         font-size: 0.75em * $size;
@@ -50,7 +50,7 @@ $desktop-breakpoint: 1080px;
 
 @mixin client-responsive-text($size) {
     @media (max-width: $mobile-breakpoint) {
-        font-size: 0.25em * $size;
+        font-size: 0.33em * $size;
     }
     @media (min-width: $desktop-breakpoint) {
         font-size: 0.333em * $size;
@@ -123,14 +123,12 @@ section {
     flex: 1 1 auto;
 
     &.social {
-      @include flex-center(row);
-      justify-content: flex-end;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
 
     }
-  }
-
-  nav {
-    @include flex-center(row);
   }
 }
 
@@ -159,6 +157,7 @@ section {
 
         // center align for 'goal' and 'skills'
         h3 {
+            @include client-responsive-header(2);
             text-align: center;
         }
 
@@ -243,8 +242,11 @@ section {
                 border-radius: 15%;
             }
 
-            @media (min-width: $desktop-breakpoint) {
-                .projectBlockText {
+            .projectBlockText {
+                @media (max-width: $mobile-breakpoint) {
+                    margin-left: 1.5%;
+                }
+                @media (min-width: $desktop-breakpoint) {
                     margin-left: 2.5%;
                 }
             }
@@ -252,7 +254,10 @@ section {
         }
 
         .headerBlock.social {
-            @include flex-center(row);
+            //should be side by side, wrapping, even on mobile
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             justify-content: left;
 
             .socialIconBlock {
