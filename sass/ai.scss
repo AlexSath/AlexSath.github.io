@@ -91,8 +91,14 @@ section {
     // justify-items: center;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
-    padding-left: 20%;
-    padding-right: 20%;
+    @media (max-width: $mobile-breakpoint) {
+        padding-left: 7.5%;
+        padding-right: 7.5%
+    }
+    @media (min-width: $desktop-breakpoint) {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
     @include flex-center(column);
 }
 
@@ -112,29 +118,34 @@ section {
 
 // Header Section
 #header {
-  @include flex-center(row);
-  flex-wrap: wrap;
-  padding: 1% 20%;
-  background-color: $primary-color;
-  color: $background-color;
-
-  h1 {
-    margin: 0;
-    font-size: 2em;
-    color: $background-color;
-  }
-
-  .headerBlock {
-    flex: 1 1 auto;
-
-    &.social {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-
+    @include flex-center(row);
+    flex-wrap: wrap;
+    @media (max-width: $mobile-breakpoint) {
+        padding: 1% 7.5%;
     }
-  }
+    @media (min-width: $desktop-breakpoint) {
+        padding: 1% 20%;
+    }
+    background-color: $primary-color;
+    color: $background-color;
+
+    h1 {
+        margin: 0;
+        font-size: 2em;
+        color: $background-color;
+    }
+
+    .headerBlock {
+        flex: 1 1 auto;
+
+        &.social {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+
+        }
+    }
 }
 
 // About Section
