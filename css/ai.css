@@ -76,8 +76,8 @@ section {
 }
 @media (max-width: 380px) {
   .socialIconBlock .socialIcon {
-    width: 13.5px;
-    height: 13.5px;
+    width: 18px;
+    height: 18px;
   }
 }
 @media (min-width: 1080px) {
@@ -147,8 +147,8 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock.headshot .headshotImg {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
   }
 }
 @media (min-width: 1080px) {
@@ -217,8 +217,8 @@ section {
 }
 @media (max-width: 380px) {
   #about .contentSubBlock .educationListBlock .educationIcon {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
 }
 @media (min-width: 1080px) {
@@ -328,8 +328,8 @@ section {
 }
 @media (max-width: 380px) {
   #projects .projectBlock .projectBlockContent .projectImg {
-    width: 144px;
-    height: 144px;
+    width: 192px;
+    height: 192px;
   }
 }
 @media (min-width: 1080px) {
