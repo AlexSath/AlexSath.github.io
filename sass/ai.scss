@@ -6,15 +6,14 @@ $background-color: #F5F5F5;
 $text-color: #161616;
 $font-serif: 'Merriweather', serif;
 $font-sans: 'Montserrat', sans-serif;
-$mobile-breakpoint: 380px;
-$desktop-breakpoint: 1080px;
+$desktop-breakpoint: 720px;
 
 // Mixins
 @mixin flex-center($direction: row) {
   display: flex;
   flex-direction: $direction;
 
-  @media (max-width: $mobile-breakpoint) {
+  @media (max-width: $desktop-breakpoint) {
     flex-direction: column;
   }
 }
@@ -29,7 +28,7 @@ $desktop-breakpoint: 1080px;
 }
 
 @mixin client-responsive-icon($size) {
-    @media (max-width: $mobile-breakpoint) {
+    @media (max-width: $desktop-breakpoint) {
         width: 28px * $size;
         height: 28px * $size;
     }
@@ -40,7 +39,7 @@ $desktop-breakpoint: 1080px;
 }
 
 @mixin client-responsive-header($size) {
-    @media (max-width: $mobile-breakpoint) {
+    @media (max-width: $desktop-breakpoint) {
         font-size: 0.66em * $size;
     }
     @media (min-width: $desktop-breakpoint) {
@@ -49,7 +48,7 @@ $desktop-breakpoint: 1080px;
 }
 
 @mixin client-responsive-text($size) {
-    @media (max-width: $mobile-breakpoint) {
+    @media (max-width: $desktop-breakpoint) {
         font-size: 0.33em * $size;
     }
     @media (min-width: $desktop-breakpoint) {
@@ -91,7 +90,7 @@ section {
     // justify-items: center;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
-    @media (max-width: $mobile-breakpoint) {
+    @media (max-width: $desktop-breakpoint) {
         padding-left: 7.5%;
         padding-right: 7.5%
     }
@@ -103,7 +102,7 @@ section {
 }
 
 .socialIconBlock {
-    @media (max-width: $mobile-breakpoint) {
+    @media (max-width: $desktop-breakpoint) {
         padding-top: 1.5%;
         padding-right: 2.5%;
     }
@@ -121,7 +120,7 @@ section {
 #header {
     @include flex-center(row);
     flex-wrap: wrap;
-    @media (max-width: $mobile-breakpoint) {
+    @media (max-width: $desktop-breakpoint) {
         padding: 1% 7.5%;
     }
     @media (min-width: $desktop-breakpoint) {
@@ -143,7 +142,7 @@ section {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            @media (max-width: $mobile-breakpoint) {
+            @media (max-width: $desktop-breakpoint) {
                 justify-content: flex-start;
             }
             @media (min-width: $desktop-breakpoint) {
@@ -267,7 +266,7 @@ section {
             }
 
             .projectBlockText {
-                @media (max-width: $mobile-breakpoint) {
+                @media (max-width: $desktop-breakpoint) {
                     margin-top: 2.5%;
                 }
                 @media (min-width: $desktop-breakpoint) {
