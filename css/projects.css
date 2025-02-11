@@ -1,52 +1,202 @@
-:root {
-    --primary-color: #BE713B; 
-    --secondary-color: #6B0504;
-    --accent-color: #26547C;
-    --background-color: #F5F5F5;
-    --text-color: #161616;
-}
-
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+  background-color: #F5F5F5;
+  color: #161616;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+@media (max-width: 1080px) {
+  body {
+    font-size: 0.99em;
+  }
+}
+@media (min-width: 1080px) {
+  body {
+    font-size: 0.999em;
+  }
 }
 
-#content {
-    padding-top: 5%;
-    display: flex;
-    justify-content: center;
+h1, h2 {
+  font-family: "Merriweather", serif;
+  color: #BE713B;
 }
 
-p {
-    font-size: 1.33em;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
+h3, h4, h5, h6 {
+  font-family: "Merriweather", serif;
+  color: #26547C;
 }
 
-.projectBlock {
-    padding-bottom: 2.5%;
-    padding-left: 25%;
-    padding-right: 25%;
+p, li {
+  font-family: "Montserrat", sans-serif;
+  color: #161616;
 }
 
-.projectBlock h3 {
-    text-align: center;
-    color: var(--primary-color)
+section {
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 1080px) {
+  section {
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+  }
+}
+@media (min-width: 1080px) {
+  section {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+}
+@media (max-width: 1080px) {
+  section {
+    flex-direction: column;
+  }
 }
 
-.projectBlockContent {
-    padding-top: 1%;
-    display: flex;
-    flex-direction: row;
+@media (max-width: 1080px) {
+  .socialIconBlock {
+    padding-top: 1.5%;
+    padding-right: 2.5%;
+  }
 }
-
-.projectBlockText {
+@media (min-width: 1080px) {
+  .socialIconBlock {
     padding-left: 2.5%;
+  }
+}
+.socialIconBlock .socialIcon {
+  filter: invert(1);
+}
+@media (max-width: 1080px) {
+  .socialIconBlock .socialIcon {
+    width: 21px;
+    height: 21px;
+  }
+}
+@media (min-width: 1080px) {
+  .socialIconBlock .socialIcon {
+    width: 36px;
+    width: 36px;
+  }
 }
 
-@media (min-width: 1px) {
-    .projectImg {
-        width: 384;
-        height: 384px;
-    }
+#projects {
+  justify-content: center;
 }
+#projects a {
+  font-family: "Montserrat", sans-serif;
+  color: #6B0504;
+  text-decoration: underline;
+}
+@media (max-width: 1080px) {
+  #projects li {
+    font-size: 0.99em;
+  }
+}
+@media (min-width: 1080px) {
+  #projects li {
+    font-size: 0.999em;
+  }
+}
+#projects .projectBlockHeader h2 {
+  text-align: center;
+  color: #BE713B;
+}
+@media (max-width: 1080px) {
+  #projects .projectBlockHeader h2 {
+    font-size: 1.98em;
+  }
+}
+@media (min-width: 1080px) {
+  #projects .projectBlockHeader h2 {
+    font-size: 2.25em;
+  }
+}
+#projects .projectBlockHeader p {
+  text-align: center;
+}
+#projects .projectBlock {
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+}
+#projects .projectBlock h3 {
+  text-align: center;
+}
+@media (max-width: 1080px) {
+  #projects .projectBlock h3 {
+    font-size: 1.32em;
+  }
+}
+@media (min-width: 1080px) {
+  #projects .projectBlock h3 {
+    font-size: 1.5em;
+  }
+}
+#projects .projectBlock .projectBlockContent {
+  padding-top: 1.5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+@media (max-width: 1080px) {
+  #projects .projectBlock .projectBlockContent {
+    flex-direction: column;
+  }
+}
+#projects .projectBlock .projectBlockContent .projectImg {
+  border-radius: 15%;
+}
+@media (max-width: 1080px) {
+  #projects .projectBlock .projectBlockContent .projectImg {
+    width: 224px;
+    height: 224px;
+  }
+}
+@media (min-width: 1080px) {
+  #projects .projectBlock .projectBlockContent .projectImg {
+    width: 384px;
+    width: 384px;
+  }
+}
+@media (max-width: 1080px) {
+  #projects .projectBlock .projectBlockContent .projectBlockText {
+    margin-top: 2.5%;
+  }
+}
+@media (min-width: 1080px) {
+  #projects .projectBlock .projectBlockContent .projectBlockText {
+    margin-left: 2.5%;
+  }
+}
+#projects .projectBlock .headerBlock.social {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+#projects .projectBlock .headerBlock.social .socialIconBlock {
+  padding-left: 0%;
+  padding-right: 2.5%;
+}
+#projects .projectBlock .headerBlock.social .socialIcon {
+  filter: none;
+}
+
+#footer {
+  padding: 1% 5%;
+  display: flex;
+  flex-direction: row;
+  background-color: #BE713B;
+}
+@media (max-width: 1080px) {
+  #footer {
+    flex-direction: column;
+  }
+}
+#footer p {
+  color: #F5F5F5;
+  margin: 0;
+}
+
+/*# sourceMappingURL=projects.css.map */

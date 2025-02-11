@@ -34,6 +34,10 @@ body {
     padding-top: 5%;
 }
 
+#certifications.contentBlock {
+    padding-top: 0.5%;
+}
+
 .iconBlock {
     margin: 2% 25% 0% 25%;
     display: flex;
@@ -129,4 +133,12 @@ body {
 #awards p {
     color: var(--background-color);
     text-align: center;
+}
+
+table a {
+    color: var(--accent-color);
+}
+
+table a:hover {
+    color: var(--secondary-color);
 }

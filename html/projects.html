@@ -60,70 +60,122 @@
             </div>
         </div> <!--END HEADER SECTION-->
 
-        <!--CONTENT SECTION-->
-        <div class="section" id="content">
-            <div class="contentBlock">
-                <div class="projectBlock">
-                    <h3>AI-based Cell Instance Segmentation for Quantitative Phase Imaging</h3>
-                    <div class="projectBlockContent">
-                        <div class="projectBlockImg">
-                            <img class="projectImg" src="../docs/assets/cellvista_ai.jpeg"></img>
-                        </div>
-                        <div class="projectBlockText">
-                            <p><strong>Languages:</strong> Python • C++ </p>
-                            <p><strong>Frameworks:</strong> Tensorflow • PyTorch • Detectron2 • TensorRT • ONNX • Vertex AI • Lightning AI • OpenCV • Qt</p>
-                            <p><strong>Domains:</strong> AI • Computer Vision • Cell Biology • Bioprocess Engineering • UX</p>
-                            <p>
-                                <strong>Destription:</strong> Phi Optics, Inc. develops label-free imaging solutions for academic customers.
-                                I developed Detectron2 instance segmentation models to support research through real-time digital labeling of
-                                cellular states such as health and cell cycle stage. To support product development in biopharmaceutical
-                                bioprocess quality control monitoring, I developed a test application to bring these models in front of
-                                bioprocess engineers and investors.
-                            </p>
-                        </div>
+        <!-- START PROJECT SECTION -->
+        <section id="projects">
+            <div class="projectBlockHeader">
+                <h2>Projects</h2>
+                <p>Things I have done at work, at school, and beyond!</p>
+            </div>
+            <div class="projectBlock">
+                <h3>AI-based Cell Instance Segmentation for Quantitative Phase Imaging</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/cellvista_ai.jpeg"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python • C++ • Batch • Bash</p>
+                        <p><strong>Frameworks:</strong> Tensorflow • PyTorch • Detectron2 • TensorRT • ONNX • Vertex AI • Lightning AI • OpenCV • WSL • Qt</p>
+                        <p><strong>Domains:</strong> AI • Computer Vision • Cell Biology • Bioprocess Engineering • UX</p>
+                        <p>
+                            <strong>Destription:</strong> Through local and cloud-based workflows, I trained Detectron2 instance segmentation
+                            models to distinguish between cellular states in images taken from Phi Optics' Quantitative Phase Imaging microscopes.
+                            To maximize performance, I implemented convolutional backbones in TensorFlow and Pytorch and created robust dataset
+                            pre-processing workflows. In Python, C++ and Qt, I also developed a test application integrating ML inferrence with a GUI
+                            using ONNX and TensorRT engines. This app has been instrumental in assessing interest from investors and biomanufacturing
+                            firms for Phi Optics' novel ML-based bioprocess monitoring &amp; control software.
+                        </p>
                     </div>
                 </div>
-                <div class="projectBlock">
-                    <h3>AI-based Phase Separation Phenotype Segmentation in Neurons</h3>
-                    <div class="projectBlockContent">
-                        <div class="projectBlockImg">
-                            <img class="projectImg" src="../docs/assets/classification.jpg"></img>
-                        </div>
-                        <div class="projectBlockText">
-                            <p><strong>Languages:</strong> Python</p>
-                            <p><strong>Frameworks:</strong> Tensorflow • HPC • Slurm • OpenCV</p>
-                            <p><strong>Domains:</strong> AI • Computer Vision • Neurobiology • Aging • Biochemistry • Cell Biology • Phase Separation</p>
-                            <p>
-                                <strong>Destription:</strong> In Dr. Zuhang Sheng's NIH lab, we lab observed differences in phase 
-                                separation phenotypes between young and aged Dorsal Root Ganglia neurons. When traditional image 
-                                analysis techniques failed to quatify these changes, I developed InceptionV3 models to segment 
-                                confocal microscopy images with pixel-level accuracy > 0.92 and IoU > 0.85.
-                            </p>
-                        </div>
+            </div>
+            <div class="projectBlock">
+                <h3>AI-based Phase Separation Phenotype Segmentation in Neurons</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/classification.jpg"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python</p>
+                        <p><strong>Frameworks:</strong> Tensorflow • HPC • Slurm • OpenCV</p>
+                        <p><strong>Domains:</strong> AI • Computer Vision • Neurobiology • Aging • Biochemistry • Cell Biology • Phase Separation</p>
+                        <p>
+                            <strong>Destription:</strong> To classify and analyze visually similar but chemically distinct images of sub-cellular
+                            structures in cultured neurons, I used Python, Tensorflow, and Slurm-based HPC systems to train UNet models with
+                            InceptionV3 backbones. With minimal training input (6 manually annotated images), my models achieved 96% pixel-level
+                            classification accuracy and over 85% semantic segmentation IoU, significantly accelerating our understanding of 
+                            age-related changes in neuronal metabolism and innovating new ways to analyze phase separation in cell images.
+                        </p>
                     </div>
                 </div>
-                <div class="projectBlock">
-                    <h3>ProDiVis: <u>Pro</u>tein <u>Di</u>tribution <u>Vis</u>ualization</h3>
-                    <div class="projectBlockContent">
-                        <div class="projectBlockImg">
-                            <img class="projectImg" src="../docs/assets/prodivis_heatmap.png"></img>
-                        </div>
-                        <div class="projectBlockText">
-                            <p><strong>Languages:</strong> Python</p>
-                            <p><strong>Frameworks:</strong> Jupyter • OpenCV • Matplotlib</p>
-                            <p><strong>Domains:</strong> Neurobiology • Oncology • Image Analysis • Biochemistry • Cell Biology</p>
-                            <p>
-                                <strong>Destription:</strong> In Dr. Maria C. Franco's OSU lab, we observed a Warburg-like
-                                metabolic switch in U87 Glioblastoma Multiforme culture models caused by differentially
-                                nitrated Heat Shock Protein 90 (HSP90). To investigate how differential nitration correlated
-                                with protein localization in 3D models, I co-developed a confocal microscopy-based z-stack
-                                normalization and visualization suite dubbed Protein Distribution Visualzation (ProDiVis).
-                            </p>
+            </div>
+            <div class="projectBlock">
+                <h3>ProDiVis: <u>Pro</u>tein <u>Di</u>tribution <u>Vis</u>ualization</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/prodivis_heatmap.png"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python</p>
+                        <p><strong>Frameworks:</strong> Jupyter • OpenCV • Matplotlib</p>
+                        <p><strong>Domains:</strong> Neurobiology • Oncology • Image Analysis • Biochemistry • Cell Biology</p>
+                        <p>
+                            <strong>Destription:</strong> To investigate how differentially modified proteins could 
+                            cause a pro-cancer metabolic switch in cellular models of Glioblastoma Multiforme, I co-developed a confocal
+                            microscopy-based z-stack normalization and visualization pipeline dubbed Protein Distribution Visualzation (ProDiVis).
+                            The pipeline leverages common python packages like Jupyter, OpenCV, and Matplotlib to significantly
+                            enhance biological insights at deep focal planes in 3D imaging.
+                        </p>
+                        <div class="headerBlock social">
+                            <div class="socialIconBlock">
+                                <a href="https://github.com/FrancoLaboratory/ProDiVis" target="_blank">
+                                    <img class="socialIcon" src="../docs/assets/social_media/github.png"></img>
+                                </a>
+                            </div>
+                            <div class="socialIconBlock">
+                                <a href="https://pubmed.ncbi.nlm.nih.gov/39376633/" target="_blank">
+                                    <img class="socialIcon" src="../docs/assets/social_media/article_icon.png"></img>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> <!--END CONTENT SECTION-->
+            <div class="projectBlock">
+                <h3>Cloud-Based DNA Sequence Quality Control for Personalized CAR-T Therapy</h3>
+                <div class="projectBlockContent">
+                    <div class="projectBlockImg">
+                        <img class="projectImg" src="../docs/assets/tnp_comparison.png"></img>
+                    </div>
+                    <div class="projectBlockText">
+                        <p><strong>Languages:</strong> Python • SQL • R</p>
+                        <p><strong>Frameworks:</strong> AWS • GCP • Jupyter • Pandas • RStudio • VCF</p>
+                        <p><strong>Domains:</strong> Bioinformatics • Oncology • Cloud Computing • Statistics • Visualization</p>
+                        <p>
+                            <strong>Destription:</strong> Implemented genome fingerprinting and comparison into a custom tissue processing 
+                            pipeline for patient-personalized CAR-T therapy in the nation's 11th largest health system. Integrated into
+                            existing AWS workflow as a quality measure to conclusively determine whether a tumor sample comes from a patient or not.
+                        </p>
+                        <ol>
+                            <li>Created and fingerprints from the hundreds of tumor & normal tissue samples.</li>
+                            <li>Assessed quality control efficacy with statistical and visualization methods.</li>
+                            <li>Enabled integration into AWS pipeline for high-throughput quality control.</li>
+                        </ol>
+                        <div class="headerBlock social">
+                            <div class="socialIconBlock">
+                                <a href="https://github.com/AlexSath/2019-EACRI-intern-code" target="_blank">
+                                    <img class="socialIcon" src="../docs/assets/social_media/github.png"></img>
+                                </a>
+                            </div>
+                            <div class="socialIconBlock">
+                                <a href="../docs/files/tnp_poster.pdf" target="_blank">
+                                    <img class="socialIcon" src="../docs/assets/social_media/article_icon.png"></img>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p><a href="#header">Back to top.</a></p>
+        </section> <!-- END PROJECT SECTION -->
 
     </body> <!--END BODY-->
 
