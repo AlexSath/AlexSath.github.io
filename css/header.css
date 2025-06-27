@@ -32,8 +32,8 @@ body {
 h1, h2, h3 {
     font-size: 2em;
     font-family: 'Merriweather', serif;
-    font-weight: bold;
-    color: var(--primary-color);
+    /* font-weight: bold; */
+    color: var(--text-color);
 }
 
 h4, h5, h6 {
