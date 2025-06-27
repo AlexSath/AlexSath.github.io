@@ -68,13 +68,22 @@ li {
 
 #header {
     padding: 1% 5% 1% 5%;
+    top: 0;
+    position: sticky;
+    position: -webkit-sticky;
     display: flex;
     flex-wrap: wrap;
+    align-self: flex-start;
     align-items: center;
     justify-content: space-between;
     background-color: var(--primary-color);
     color: var(--background-color);
     z-index: 2;
+}
+
+#header .accented {
+    color: var(--background-color);
+    text-decoration: underline;
 }
 
 #header h1 {
@@ -140,6 +149,11 @@ li {
 
 #headerMenu li:hover a {
     color: var(--primary-color);
+}
+
+#headerMenu li:hover .accented {
+    color: var(--primary-color);
+    text-decoration: underline;
 }
 
 .socialImgContainer {
