@@ -29,8 +29,15 @@ body {
     margin-right: 0px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     font-size: 2em;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+h4, h5, h6 {
+    font-size: 1.75em;
     font-family: 'Merriweather', serif;
     color: var(--text-color);
 }
