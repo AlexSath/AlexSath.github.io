@@ -127,7 +127,7 @@ body {
 }
 
 #awards h2 {
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 #awards p {

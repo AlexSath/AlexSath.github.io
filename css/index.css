@@ -2,7 +2,7 @@
 :root {
     --primary-color: #BE713B; 
     --secondary-color: #6B0504;
-    --accent-color: #26547C;
+    --accent-color: #26547c;
     --background-color: #F5F5F5;
     --text-color: #161616;
 }
@@ -132,12 +132,12 @@ body {
 }
 
 #footerSection a {
-    color: var(--secondary-color);
+    color: var(--accent-color);
     font-weight: bold;
 }
 
 #footerSection .accented {
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 .footerBlock {
@@ -156,6 +156,6 @@ body {
 }
 
 .socialIcon.foot {
-    filter: invert(11%) sepia(32%) saturate(6193%) hue-rotate(348deg) brightness(98%) contrast(109%);
+    filter: brightness(0) saturate(100%) invert(26%) sepia(21%) saturate(1675%) hue-rotate(166deg) brightness(99%) contrast(86%);
 }
 
