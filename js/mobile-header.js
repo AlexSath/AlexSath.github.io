@@ -35,6 +35,7 @@
         
         // Set the headline to start right after the header
         headline.style.marginTop = `${headerHeight}px`;
+        // headline.style.paddingTop = `50px`;
     }
     
     // Initialize header behavior

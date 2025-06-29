@@ -1,0 +1,299 @@
+// Variables
+$primary-color: #BE713B;
+$secondary-color: #6B0504;
+$accent-color: #26547C;
+$background-color: #F5F5F5;
+$text-color: #161616;
+$font-serif: 'Merriweather', serif;
+$font-sans: 'Montserrat', sans-serif;
+$desktop-breakpoint: 1080px;
+
+// Mixins
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+@mixin responsive-icon($sizes) {
+  @each $breakpoint, $size in $sizes {
+    @media (min-width: $breakpoint) {
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+@mixin client-responsive-icon($size) {
+  @media (max-width: $desktop-breakpoint) {
+    width: 28px * $size;
+    height: 28px * $size;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    width: 48px * $size;
+    height: 48px * $size;
+  }
+}
+
+@mixin client-responsive-text($size) {
+  @media (max-width: $desktop-breakpoint) {
+    font-size: 0.75em * $size;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 1em * $size;
+  }
+}
+
+// Root Variables (for CSS custom properties fallback)
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --accent-color: #{$accent-color};
+  --background-color: #{$background-color};
+  --text-color: #{$text-color};
+}
+
+// General Body Styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  font-family: $font-sans;
+}
+
+// Content Section
+#content {
+  flex-direction: column;
+  justify-content: center;
+  
+  @media (max-width: $desktop-breakpoint) {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  td {
+    padding: 1.5% 0.5% 1.5% 0.5%;
+    
+    @media (max-width: $desktop-breakpoint) {
+      padding: 1.5% 0.5%;
+    }
+  }
+}
+
+// Content Blocks
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 5%;
+  
+  @media (max-width: $desktop-breakpoint) {
+    // padding-left: 5%;
+    // padding-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  &#suppExperience,
+  &#education {
+    padding-top: 5%;
+  }
+
+  &#certifications {
+    padding-top: 0.5%;
+  }
+}
+
+// Icon Block
+.iconBlock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5%;
+  
+  @media (max-width: $desktop-breakpoint) {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  @media (min-width: $desktop-breakpoint) {
+    margin: 2% 25% 0% 25%;
+  }
+
+}
+
+// Table Columns
+.leftColumn {
+  text-align: right;
+  
+  @media (max-width: $desktop-breakpoint) {
+    text-align: center;
+    font-size: 0.9em;
+  }
+}
+
+.middleColumn {
+  text-align: center;
+  color: $accent-color;
+  font-weight: bold;
+  width: 50%;
+  
+  @media (max-width: $desktop-breakpoint) {
+    width: 100%;
+    padding: 1% 0;
+  }
+}
+
+.rightColumn {
+  text-align: left;
+  
+  @media (max-width: $desktop-breakpoint) {
+    text-align: center;
+    font-size: 0.9em;
+  }
+}
+
+// Experience Icons
+.experienceIcon {
+  border-radius: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+//   @media (max-width: $desktop-breakpoint) {
+//     margin: 15%;
+//   }
+
+  // Responsive icon sizes
+  @media (min-width: 1px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 576px) {
+    width: 48px;
+    height: 48px;
+  }
+
+  @media (min-width: 768px) {
+    width: 56px;
+    height: 56px;
+  }
+
+  @media (min-width: 992px) {
+    width: 64px;
+    height: 64px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+// Quote and Awards Sections
+#quote,
+#awards {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  display: flex;
+  background-color: $text-color;
+  
+  @media (max-width: $desktop-breakpoint) {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+}
+
+#quote {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(../docs/assets/prodivis_heatmap.png);
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+
+  p {
+    color: $background-color;
+    text-align: center;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1.25em;
+      line-height: 1.4;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 1.75em;
+    }
+  }
+}
+
+#awards {
+  h2 {
+    color: $accent-color;
+    
+    @media (max-width: $desktop-breakpoint) {
+      text-align: center;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  p {
+    color: $background-color;
+    text-align: center;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1em;
+      margin: 0.5em 0;
+    }
+  }
+}
+
+// Table Links
+table {
+  @media (max-width: $desktop-breakpoint) {
+    width: 100%;
+    
+    tr {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-bottom: 1.5em;
+      border-bottom: 1px solid lighten($text-color, 70%);
+      padding-bottom: 1em;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
+    td {
+      padding: 0 0;
+    }
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary-color;
+      text-decoration: underline;
+    }
+  }
+}
