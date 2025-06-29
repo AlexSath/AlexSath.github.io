@@ -120,15 +120,16 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5%;
   
   @media (max-width: $desktop-breakpoint) {
     margin-left: 10%;
     margin-right: 10%;
+    gap: 5%;
   }
 
   @media (min-width: $desktop-breakpoint) {
-    margin: 2% 25% 0% 25%;
+    margin: 2% 15% 0% 15%;
+    gap: 10%;
   }
 
 }
