@@ -20,7 +20,7 @@
     // Calculate and set headline top position (mobile only)
     function adjustHeadlinePosition() {
         const header = document.getElementById('header');
-        const headline = document.getElementById('headline');
+        const headline = document.getElementsByClassName('top')[0];
         
         if (!header || !headline) return;
         
@@ -101,7 +101,7 @@
             if (!isMobileDevice()) {
                 header.classList.remove('header-compact');
                 // Reset headline positioning for desktop
-                const headline = document.getElementById('headline');
+                const headline = document.getElementsByClassName("top")[0];
                 if (headline) {
                     headline.style.paddingTop = '';
                 }
