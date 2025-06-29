@@ -77,28 +77,28 @@ body {
   background-size: cover;
   background-position:center;
   
-  @media (max-width: $desktop-breakpoint) {
-    @media screen and (min-width: 350px) {
-      background-position-y: 150px;
-      padding: 75% 5% 10% 5%;
-    }
+  // @media (max-width: $desktop-breakpoint) {
+  //   @media screen and (min-width: 350px) {
+  //     background-position-y: 150px;
+  //     padding: 75% 5% 10% 5%;
+  //   }
 
-    @media screen and (min-width: 576px) {
-      background-position-y: 100px;
-      padding: 65% 5% 10% 5%;
-    }
+  //   @media screen and (min-width: 576px) {
+  //     background-position-y: 100px;
+  //     padding: 65% 5% 10% 5%;
+  //   }
 
-    @media screen and (min-width: 768px) {
-      background-position-y: 50px;
-      padding: 55% 5% 10% 5%;
-    }
+  //   @media screen and (min-width: 768px) {
+  //     background-position-y: 50px;
+  //     padding: 55% 5% 10% 5%;
+  //   }
 
-    @media screen and (min-width: 992px) {
-      background-position-y: 0;
-      padding: 45% 5% 10% 5%;
-    }
-    
-  }
+  //   @media screen and (min-width: 992px) {
+  //     background-position-y: 0;
+  //     padding: 45% 5% 10% 5%;
+  //   }
+  // }
+
   @media (min-width: $desktop-breakpoint) {
     padding: 0;
   }
