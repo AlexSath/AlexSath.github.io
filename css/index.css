@@ -21,8 +21,27 @@ body {
   background-size: cover;
   background-position: center;
 }
-@media (max-width: 1080px) {
+@media screen and (max-width: 1080px) and (min-width: 350px) {
   #headline {
+    background-position-y: 150px;
+    padding: 75% 5% 10% 5%;
+  }
+}
+@media screen and (max-width: 1080px) and (min-width: 576px) {
+  #headline {
+    background-position-y: 100px;
+    padding: 65% 5% 10% 5%;
+  }
+}
+@media screen and (max-width: 1080px) and (min-width: 768px) {
+  #headline {
+    background-position-y: 50px;
+    padding: 55% 5% 10% 5%;
+  }
+}
+@media screen and (max-width: 1080px) and (min-width: 992px) {
+  #headline {
+    background-position-y: 0;
     padding: 45% 5% 10% 5%;
   }
 }
