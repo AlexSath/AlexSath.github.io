@@ -219,9 +219,22 @@ a {
   align-items: center;
   
   @media (max-width: $desktop-breakpoint) {
-    width: 25%;
-  }
+    @media screen and (min-width: 350px) {
+      width: 90%;
+    }
 
+    @media screen and (min-width: 576px) {
+      width: 50%;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 25%;
+    }
+
+    // @media screen and (min-width: 992px) {
+      
+    // }
+  }
 }
 
 #headerMenu {

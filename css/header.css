@@ -181,7 +181,17 @@ a {
 #header nav {
   align-items: center;
 }
-@media (max-width: 1080px) {
+@media screen and (max-width: 1080px) and (min-width: 350px) {
+  #header nav {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1080px) and (min-width: 576px) {
+  #header nav {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 1080px) and (min-width: 768px) {
   #header nav {
     width: 25%;
   }
