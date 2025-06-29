@@ -1,0 +1,332 @@
+// Variables
+$primary-color: #BE713B;
+$secondary-color: #6B0504;
+$accent-color: #26547C;
+$background-color: #F5F5F5;
+$text-color: #161616;
+$font-serif: 'Merriweather', serif;
+$font-sans: 'Montserrat', sans-serif;
+$desktop-breakpoint: 1080px;
+
+// Mixins
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+@mixin responsive-icon($sizes) {
+  @each $breakpoint, $size in $sizes {
+    @media (min-width: $breakpoint) {
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+@mixin client-responsive-icon($size) {
+    @media (max-width: $desktop-breakpoint) {
+        width: 28px * $size;
+        height: 28px * $size;
+    }
+    @media (min-width: $desktop-breakpoint) {
+        width: 48px * $size;
+        height: 48px * $size;
+    }
+}
+
+@mixin client-responsive-header($size) {
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 0.66em * $size;
+    }
+    @media (min-width: $desktop-breakpoint) {
+        font-size: 0.75em * $size;
+    }
+}
+
+@mixin client-responsive-text($size) {
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 0.33em * $size;
+    }
+    @media (min-width: $desktop-breakpoint) {
+        font-size: 0.333em * $size;
+    }
+}
+
+// General Body Styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  font-family: $font-sans;
+  @include client-responsive-text(3);
+}
+
+// Headline Section
+#headline {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ),
+    url(../docs/assets/classification_blurred.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+  @media (max-width: $desktop-breakpoint) {
+    padding: 45% 5% 10% 5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding: 0;
+  }
+
+  h1 {
+    font-family: $font-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: $background-color;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 2.5em;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 3.5em;
+    }
+  }
+}
+
+.headlinePadder {
+  position: relative;
+  display: inline-block;
+  
+  @media (min-width: $desktop-breakpoint) {
+    @media screen and (min-height: 576px) {
+      height: 80px;
+    }
+    @media screen and (min-height: 768px) {
+      height: 120px;
+    }
+    @media screen and (min-height: 992px) {
+      height: 160px;
+    }
+  }
+}
+
+.headlineBlock {
+  @media (max-width: $desktop-breakpoint) {
+    padding: 0;
+  }
+}
+
+// Bio Section
+#bio {
+  @media (max-width: $desktop-breakpoint) {
+    padding: 10% 5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 0;
+  }
+}
+
+.bioColumn {
+  @media (max-width: $desktop-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    // max-width: 1200px;
+  }
+}
+
+.bioPadder {
+  @media (max-width: $desktop-breakpoint) {
+    display: none;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    position: relative;
+    display: inline-block;
+    flex-basis: 10%;
+  }
+}
+
+.bioBlock {
+  z-index: 1;
+  
+  @media (max-width: $desktop-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    position: relative;
+    align-items: center;
+    // flex-basis: 80%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.image {
+  @media (max-width: $desktop-breakpoint) {
+    width: 100%;
+    max-width: 300px;
+    padding: 0;
+    order: 1;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 4%;
+    padding-right: 4%;
+    width: 100%;
+    max-width: 500px;
+    flex: 1;
+  }
+
+  img {
+    border-style: solid;
+    border-color: $text-color;
+    border-width: 5px;
+  }
+}
+
+.text {
+  @media (max-width: $desktop-breakpoint) {
+    padding: 0;
+    order: 2;
+    text-align: left;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 4%;
+    padding-right: 4%;
+    flex: 2;
+  }
+
+  h3 {
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  h4 {
+    color: $accent-color;
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1.25em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  p, li {
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 1.25em;
+    }
+  }
+
+  ul {
+    @media (max-width: $desktop-breakpoint) {
+      padding-left: 20px;
+    }
+  }
+}
+
+#headshot {
+  align-self: center;
+  width: 100%;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+// Footer Section
+#footerSection {
+  background-color: $text-color;
+  font-size: 1.33em;
+  @include flex-center(column);
+  
+  @media (max-width: $desktop-breakpoint) {
+    padding: 8% 5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding: 5%;
+  }
+
+  p {
+    color: $background-color;
+    text-align: center;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 0.9em;
+      line-height: 1.5;
+    }
+  }
+
+  a {
+    color: $accent-color;
+    font-weight: bold;
+  }
+
+  .accented {
+    color: $accent-color;
+  }
+}
+
+.footerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    @media (max-width: $desktop-breakpoint) {
+      padding: 4% 0;
+      gap: 20px;
+      width: 100%;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      padding: 1.5% 0;
+    }
+  }
+}
+
+.socialImgContainer.foot {
+  @media (max-width: $desktop-breakpoint) {
+    padding: 0;
+  }
+}
+
+.socialIcon.foot {
+  filter: brightness(0) saturate(100%) invert(26%) sepia(21%) saturate(1675%) hue-rotate(166deg) brightness(99%) contrast(86%);
+  
+  @media (max-width: $desktop-breakpoint) {
+    width: 48px;
+    height: 48px;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    width: 36px;
+    height: 36px;
+  }
+}

@@ -1,0 +1,375 @@
+// Variables
+$primary-color: #BE713B;
+$secondary-color: #6B0504;
+$accent-color: #26547C;
+$background-color: #F5F5F5;
+$text-color: #161616;
+$font-serif: 'Merriweather', serif;
+$font-sans: 'Montserrat', sans-serif;
+$desktop-breakpoint: 1080px;
+
+// Mixins
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+@mixin responsive-icon($sizes) {
+  @each $breakpoint, $size in $sizes {
+    @media (min-width: $breakpoint) {
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+@mixin client-responsive-icon($size) {
+    @media (max-width: $desktop-breakpoint) {
+        width: 28px * $size;
+        height: 28px * $size;
+    }
+    @media (min-width: $desktop-breakpoint) {
+        width: 48px * $size;
+        height: 48px * $size;
+    }
+}
+
+@mixin client-responsive-header($size) {
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 0.66em * $size;
+    }
+    @media (min-width: $desktop-breakpoint) {
+        font-size: 0.75em * $size;
+    }
+}
+
+@mixin client-responsive-text($size) {
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 0.33em * $size;
+    }
+    @media (min-width: $desktop-breakpoint) {
+        font-size: 0.333em * $size;
+    }
+}
+
+// General Styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  font-family: $font-sans;
+  @include client-responsive-text(3);
+}
+
+h1, h2 {
+  font-family: $font-serif;
+  color: $primary-color;
+  
+  @media (max-width: $desktop-breakpoint) {
+    font-size: 1.5em;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 2em;
+  }
+}
+
+h3, h4, h5, h6 {
+  font-family: $font-serif;
+  color: $text-color;
+  
+  @media (max-width: $desktop-breakpoint) {
+    font-size: 1.25em;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 1.75em;
+  }
+}
+
+p, li {
+  font-family: $font-sans;
+  color: $text-color;
+}
+
+.accented {
+  color: $primary-color;
+}
+
+a {
+  color: $primary-color;
+}
+
+// Dynamic Buttons
+.button {
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
+
+// Header Section
+#header {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  background-color: $primary-color;
+  color: $background-color;
+  z-index: 1000;
+  
+  @media (max-width: $desktop-breakpoint) {
+    padding: 3% 5%;
+    @include flex-center(column);
+    text-align: center;
+    gap: 15px;
+    transition: padding 0.3s ease-in-out;
+    
+    &.header-compact {
+      padding: 2% 5% 2% 5%;
+      gap: 0;
+    }
+  }
+  
+  @media (min-width: $desktop-breakpoint) {
+    padding: 1% 5%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    position: -webkit-sticky;
+  }
+
+  .accented {
+    color: $background-color;
+    text-decoration: underline;
+  }
+
+  h1 {
+    color: $background-color;
+    margin: 0;
+    padding: 0;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1.75em;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 2em;
+    }
+  }
+}
+
+.headerBlock {
+  @media (max-width: $desktop-breakpoint) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    flex: 1 1 auto;
+    align-items: center;
+  }
+
+  &.social {
+    @media (max-width: $desktop-breakpoint) {
+      order: 3;
+      opacity: 1;
+      // max-height: 60px;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      
+      .header-compact & {
+        opacity: 0;
+        max-height: 0;
+        margin: 0;
+      }
+    }
+    @media (min-width: $desktop-breakpoint) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
+
+  &.navigation {
+    @media (max-width: $desktop-breakpoint) {
+      order: 2;
+      opacity: 1;
+      // max-height: 200px;
+      overflow: hidden;
+      
+      .header-compact & {
+        opacity: 0;
+        max-height: 0;
+        margin: 0;
+      }
+    }
+    @media (min-width: $desktop-breakpoint) {
+      align-items: center;
+    }
+  }
+}
+
+#header nav {
+  align-items: center;
+  
+  @media (max-width: $desktop-breakpoint) {
+    width: 25%;
+  }
+
+}
+
+#headerMenu {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  li {
+    list-style-type: none;
+    font-family: $font-serif;
+    color: $background-color;
+    font-weight: bold;
+    margin: 0;
+    
+    @media (max-width: $desktop-breakpoint) {
+      padding-top: 2%;
+      padding-bottom: 2%;
+      margin-left: 2%;
+      margin-right: 2%;
+      font-size: 1.25em;
+    }
+
+    @media (min-width: $desktop-breakpoint) {
+      // padding-top: 10%;
+      // padding-bottom: 10%;
+      padding-left: 2%;
+      padding-right: 2%;
+      font-size: 1.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: $background-color;
+      display: block;
+    }
+
+    &:hover {
+      color: $primary-color;
+      background-color: $background-color;
+      border-radius: 5px;
+
+      a {
+        color: $primary-color;
+      }
+
+      .accented {
+        color: $primary-color;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.socialImgContainer {
+  @media (max-width: $desktop-breakpoint) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
+
+.socialIcon {
+  filter: invert(1);
+  
+  @media (max-width: $desktop-breakpoint) {
+    width: 32px;
+    height: 32px;
+    // margin-left: 10%;
+    // margin-right: 10%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    @include responsive-icon((
+      1px: 12px,
+      576px: 18px,
+      768px: 24px,
+      992px: 30px,
+      1200px: 36px
+    ));
+  }
+}
+
+// Footer
+#footer {
+  padding: 1% 5%;
+  display: flex;
+  align-items: center;
+  background-color: $primary-color;
+  z-index: 2;
+
+  p {
+    color: $background-color;
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+  }
+}
+
+// Content Sections
+#content {
+  display: flex;
+  
+  @media (max-width: $desktop-breakpoint) {
+    padding: 5% 7.5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding: 5% 0;
+  }
+
+  h2 {
+    font-family: $font-serif;
+    text-align: center;
+    color: $primary-color;
+    padding-bottom: 2.5%;
+    margin-bottom: 0;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 2em;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 2.5em;
+    }
+  }
+
+  p, li, td {
+    font-family: $font-sans;
+    color: $text-color;
+    margin-bottom: 0.75em;
+    
+    @media (max-width: $desktop-breakpoint) {
+      font-size: 1em;
+    }
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 1.25em;
+    }
+  }
+}
