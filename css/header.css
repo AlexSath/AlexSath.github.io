@@ -1,8 +1,14 @@
+html {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   background-color: #F5F5F5;
   color: #161616;
   margin: 0;
   font-family: "Montserrat", sans-serif;
+  overscroll-behavior-y: none;
 }
 @media (max-width: 1080px) {
   body {

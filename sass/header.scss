@@ -57,12 +57,18 @@ $desktop-breakpoint: 1080px;
 }
 
 // General Styles
+html {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 body {
   background-color: $background-color;
   color: $text-color;
   margin: 0;
   font-family: $font-sans;
   @include client-responsive-text(3);
+  overscroll-behavior-y: none;
 }
 
 h1, h2 {

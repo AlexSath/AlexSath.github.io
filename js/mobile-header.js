@@ -1,5 +1,5 @@
 /**
- * Mobile Header Collapse System - Mobile Optimized
+ * Mobile Header Collapse System - Mobile Optimized with Bounce Prevention
  * Handles mobile-specific scroll behaviors and momentum scrolling
  */
 
@@ -22,14 +22,13 @@ class MobileHeaderController {
         this.scrollVelocity = 0;
         this.velocityHistory = [];
         
-        // Bottom detection
-        this.isNearBottom = false;
-        this.bottomThreshold = 100; // pixels from bottom
-        this.wasAtBottom = false;
+        // Bounce prevention
+        this.isOverscrolling = false;
+        this.overscrollStartY = 0;
         
         // Thresholds
         this.collapseThreshold = 50;
-        this.expandThreshold = window.innerHeight * 0.3;
+        this.expandThreshold = window.innerHeight * 0.5; // Fixed from 100 to 0.5
         
         // Mobile-optimized timing
         this.transitionDuration = 250; // Faster for mobile
@@ -44,6 +43,7 @@ class MobileHeaderController {
         // Bind methods
         this.handleScroll = this.throttle(this.handleScroll.bind(this), this.debounceDelay);
         this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.handleResize = this.debounce(this.handleResize.bind(this), 100);
         
@@ -63,7 +63,6 @@ class MobileHeaderController {
         // Initialize scroll position
         this.lastScrollY = window.pageYOffset;
         this.lastScrollTime = performance.now();
-        this.updateBottomDetection();
     }
     
     isMobile() {
@@ -96,17 +95,37 @@ class MobileHeaderController {
         
         // Touch events for mobile-specific behavior
         document.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+        document.addEventListener('touchmove', this.handleTouchMove, { passive: true });
         document.addEventListener('touchend', this.handleTouchEnd, { passive: true });
         
         // Resize handling
         window.addEventListener('resize', this.handleResize);
         
         // Handle momentum scrolling end
-        window.addEventListener('scrollend', () => {
-            this.momentumScrolling = false;
-            this.velocityHistory = [];
-            this.wasAtBottom = this.isNearBottom;
-        }, { passive: true });
+        if ('onscrollend' in window) {
+            window.addEventListener('scrollend', () => {
+                this.momentumScrolling = false;
+                this.velocityHistory = [];
+                this.isOverscrolling = false;
+            }, { passive: true });
+        }
+    }
+    
+    // Boundary detection helpers
+    isNearBottom() {
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset;
+        const clientHeight = window.innerHeight;
+        // Check if we're within 100px of the bottom
+        return scrollHeight - (scrollTop + clientHeight) < 100;
+    }
+    
+    isNearTop() {
+        return window.pageYOffset < 50;
+    }
+    
+    isAtBoundary() {
+        return this.isNearTop() || this.isNearBottom();
     }
     
     handleTouchStart(e) {
@@ -114,6 +133,23 @@ class MobileHeaderController {
         this.momentumScrolling = false;
         this.touchStartY = e.touches[0].clientY;
         this.velocityHistory = [];
+        this.isOverscrolling = false;
+        
+        // Store initial scroll position for overscroll detection
+        this.overscrollStartY = window.pageYOffset;
+    }
+    
+    handleTouchMove(e) {
+        if (!this.isTouching) return;
+        
+        const currentY = e.touches[0].clientY;
+        const currentScrollY = window.pageYOffset;
+        
+        // Detect overscroll conditions
+        if ((this.isNearTop() && currentY > this.touchStartY) ||
+            (this.isNearBottom() && currentY < this.touchStartY)) {
+            this.isOverscrolling = true;
+        }
     }
     
     handleTouchEnd(e) {
@@ -121,19 +157,15 @@ class MobileHeaderController {
         
         // Detect if momentum scrolling will occur
         setTimeout(() => {
-            if (Math.abs(this.scrollVelocity) > 0.5) {
+            if (Math.abs(this.scrollVelocity) > 0.5 && !this.isOverscrolling) {
                 this.momentumScrolling = true;
             }
         }, 50);
-    }
-    
-    updateBottomDetection() {
-        const scrollY = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
         
-        // Check if we're near the bottom
-        this.isNearBottom = (scrollY + windowHeight) >= (documentHeight - this.bottomThreshold);
+        // Reset overscroll flag after a delay
+        setTimeout(() => {
+            this.isOverscrolling = false;
+        }, 300);
     }
     
     calculateVelocity(currentScrollY, currentTime) {
@@ -166,13 +198,25 @@ class MobileHeaderController {
         const currentScrollY = window.pageYOffset;
         const currentTime = performance.now();
         
-        // Update bottom detection
-        this.updateBottomDetection();
-        
         // Calculate velocity for mobile momentum detection
         this.calculateVelocity(currentScrollY, currentTime);
         
         const scrollDelta = currentScrollY - this.lastScrollY;
+        
+        // Skip processing during overscroll bounce
+        if (this.isOverscrolling) {
+            this.lastScrollY = currentScrollY;
+            this.lastScrollTime = currentTime;
+            return;
+        }
+        
+        // Prevent false triggers at boundaries
+        if (this.isNearBottom() && scrollDelta < 0 && Math.abs(this.scrollVelocity) > 2) {
+            // High velocity upward movement at bottom - likely bounce
+            this.lastScrollY = currentScrollY;
+            this.lastScrollTime = currentTime;
+            return;
+        }
         
         // Update scroll direction with mobile-specific logic
         if (Math.abs(scrollDelta) > 0.5) { // Lower threshold for mobile
@@ -181,34 +225,6 @@ class MobileHeaderController {
             } else if (scrollDelta < 0) {
                 this.scrollDirection = -1;
             }
-        }
-        
-        // CRITICAL FIX: Prevent unwanted behavior when at bottom
-        if (this.isNearBottom) {
-            // If we're at the bottom, don't make any header changes unless:
-            // 1. We're scrolling up significantly (intentional user action)
-            // 2. We're not in a momentum scroll situation
-            const significantUpwardScroll = this.scrollDirection < 0 && Math.abs(scrollDelta) > 15;
-            const intentionalUpwardVelocity = this.scrollVelocity < -1.0 && !this.momentumScrolling;
-            
-            if (this.isCollapsed && (significantUpwardScroll || intentionalUpwardVelocity)) {
-                // Only expand if there's clear upward intent
-                if (currentScrollY < (this.lastScrollY - 20)) {
-                    this.expandHeader();
-                }
-            }
-            
-            // Don't process normal collapse/expand logic when at bottom
-            this.lastScrollY = currentScrollY;
-            this.lastScrollTime = currentTime;
-            this.wasAtBottom = true;
-            return;
-        }
-        
-        // Reset bottom state when we move away from bottom
-        if (this.wasAtBottom && !this.isNearBottom) {
-            this.wasAtBottom = false;
-            this.velocityHistory = []; // Clear velocity history to prevent carryover
         }
         
         // Mobile-specific transition override logic
@@ -233,9 +249,9 @@ class MobileHeaderController {
         }
         
         // Normal decision logic with mobile optimizations
-        if (this.shouldCollapse(currentScrollY)) {
+        if (this.shouldCollapse(currentScrollY, scrollDelta)) {
             this.collapseHeader();
-        } else if (this.shouldExpand(currentScrollY)) {
+        } else if (this.shouldExpand(currentScrollY, scrollDelta)) {
             this.expandHeader();
         }
         
@@ -243,36 +259,34 @@ class MobileHeaderController {
         this.lastScrollTime = currentTime;
     }
     
-    shouldCollapse(scrollY) {
-        if (this.isCollapsed || this.isNearBottom) return false;
+    shouldCollapse(scrollY, scrollDelta) {
+        if (this.isCollapsed || this.isNearBottom()) return false;
         
         // More sensitive collapse for mobile
         const minScrollDelta = this.momentumScrolling ? 3 : 5;
-        const scrollDelta = scrollY - this.lastScrollY;
         
         return this.scrollDirection > 0 && 
                scrollY > this.collapseThreshold &&
                scrollDelta > minScrollDelta;
     }
     
-    shouldExpand(scrollY) {
-        if (!this.isCollapsed || this.isNearBottom) return false;
+    shouldExpand(scrollY, scrollDelta) {
+        if (!this.isCollapsed) return false;
+        
+        // Never expand when at bottom of page
+        if (this.isNearBottom()) return false;
         
         // Mobile-optimized expansion logic
         const isNearTop = scrollY < this.collapseThreshold;
-        const hasScrolledUpSignificantly = (this.lastScrollY - scrollY) > this.expandThreshold;
-        const hasUpwardVelocity = this.scrollVelocity < -0.3; // Increased threshold
+        const hasScrolledUpSignificantly = Math.abs(this.lastScrollY - scrollY) > this.expandThreshold;
+        const hasUpwardVelocity = this.scrollVelocity < -0.2;
         
-        // Require more intentional upward movement
-        const intentionalUpwardMovement = this.scrollDirection < 0 && 
-                                        (this.lastScrollY - scrollY) > 10;
-        
-        return intentionalUpwardMovement && 
-               (isNearTop || (hasScrolledUpSignificantly && hasUpwardVelocity && !this.momentumScrolling));
+        return this.scrollDirection < 0 && 
+               (isNearTop || (hasScrolledUpSignificantly && hasUpwardVelocity && !this.isOverscrolling));
     }
     
     forceCollapse() {
-        if (this.isCollapsed || this.isNearBottom) return;
+        if (this.isCollapsed) return;
         
         if (this.transitionTimeout) {
             clearTimeout(this.transitionTimeout);
@@ -283,7 +297,7 @@ class MobileHeaderController {
     }
     
     forceExpand() {
-        if (!this.isCollapsed) return;
+        if (!this.isCollapsed || this.isNearBottom()) return;
         
         if (this.transitionTimeout) {
             clearTimeout(this.transitionTimeout);
@@ -294,7 +308,7 @@ class MobileHeaderController {
     }
     
     collapseHeader() {
-        if (this.isCollapsed || this.isTransitioning || this.isNearBottom) return;
+        if (this.isCollapsed || this.isTransitioning) return;
         
         this.isTransitioning = true;
         this.isCollapsed = true;
@@ -336,8 +350,7 @@ class MobileHeaderController {
         
         this.measureHeaderHeights();
         this.updateBodyPadding();
-        this.expandThreshold = window.innerHeight * 0.3;
-        this.updateBottomDetection();
+        this.expandThreshold = window.innerHeight * 0.5;
     }
     
     cleanup() {
@@ -349,6 +362,13 @@ class MobileHeaderController {
         if (this.transitionTimeout) {
             clearTimeout(this.transitionTimeout);
         }
+        
+        // Remove event listeners
+        window.removeEventListener('scroll', this.handleScroll);
+        document.removeEventListener('touchstart', this.handleTouchStart);
+        document.removeEventListener('touchmove', this.handleTouchMove);
+        document.removeEventListener('touchend', this.handleTouchEnd);
+        window.removeEventListener('resize', this.handleResize);
     }
     
     // Throttle for high-frequency events
@@ -380,13 +400,17 @@ class MobileHeaderController {
 }
 
 // Initialize when DOM is ready
+let headerController;
 document.addEventListener('DOMContentLoaded', () => {
-    new MobileHeaderController();
+    headerController = new MobileHeaderController();
 });
 
 // Handle page visibility changes
 document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-        new MobileHeaderController();
+    if (!document.hidden && headerController) {
+        // Re-initialize if needed
+        if (headerController.isMobile()) {
+            headerController.init();
+        }
     }
 });
