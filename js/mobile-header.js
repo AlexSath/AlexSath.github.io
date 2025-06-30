@@ -1,7 +1,6 @@
 /**
- * Mobile Header Collapse System
- * Provides smooth header transitions with no content jumping
- * Optimized for performance and user experience
+ * Mobile Header Collapse System - Mobile Optimized
+ * Handles mobile-specific scroll behaviors and momentum scrolling
  */
 
 class MobileHeaderController {
@@ -14,193 +13,232 @@ class MobileHeaderController {
         this.isTransitioning = false;
         this.lastScrollY = 0;
         this.scrollDirection = 0;
+        this.lastScrollTime = 0;
+        
+        // Mobile-specific tracking
+        this.touchStartY = 0;
+        this.isTouching = false;
+        this.momentumScrolling = false;
+        this.scrollVelocity = 0;
+        this.velocityHistory = [];
         
         // Thresholds
-        this.collapseThreshold = 50; // pixels scrolled down to collapse
-        this.expandThreshold = window.innerHeight * 0.5; // 1/2 screen height
+        this.collapseThreshold = 50;
+        this.expandThreshold = window.innerHeight * 100;
         
-        // Timing and easing
-        this.transitionDuration = 300; // milliseconds
-        this.debounceDelay = 16; // ~60fps
-        this.transitionTimeout = null; // Store timeout reference
+        // Mobile-optimized timing
+        this.transitionDuration = 250; // Faster for mobile
+        this.debounceDelay = 8; // Higher frequency for mobile
+        this.velocityDecayTime = 150; // Track velocity over 150ms
         
-        // Store original header height for calculations
+        // Store heights
         this.originalHeaderHeight = 0;
         this.collapsedHeaderHeight = 0;
+        this.transitionTimeout = null;
         
         // Bind methods
-        this.handleScroll = this.debounce(this.handleScroll.bind(this), this.debounceDelay);
+        this.handleScroll = this.throttle(this.handleScroll.bind(this), this.debounceDelay);
+        this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.handleResize = this.debounce(this.handleResize.bind(this), 100);
         
         this.init();
     }
     
     init() {
-        // Only activate on mobile devices
         if (!this.isMobile()) {
             return;
         }
         
         this.measureHeaderHeights();
-        this.setupScrollListener();
-        this.setupResizeListener();
+        this.setupEventListeners();
         this.initializeBodyPadding();
-        
-        // Setup CSS transitions
         this.setupTransitions();
+        
+        // Initialize scroll position
+        this.lastScrollY = window.pageYOffset;
+        this.lastScrollTime = performance.now();
     }
     
     isMobile() {
-        return window.innerWidth <= 1080; // Based on $desktop-breakpoint from SCSS
+        return window.innerWidth <= 1080;
     }
     
     measureHeaderHeights() {
-        // Temporarily ensure header is expanded to measure
         this.header.classList.remove('header-compact');
         this.originalHeaderHeight = this.header.offsetHeight;
         
-        // Measure collapsed height
         this.header.classList.add('header-compact');
         this.collapsedHeaderHeight = this.header.offsetHeight;
         
-        // Reset to expanded state initially
         this.header.classList.remove('header-compact');
     }
     
     setupTransitions() {
-        // Add smooth transitions for header
-        this.header.style.transition = `padding ${this.transitionDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1)`;
-        
-        // Add smooth transitions for body padding
-        this.body.style.transition = `padding-top ${this.transitionDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1)`;
+        const easing = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'; // Mobile-optimized easing
+        this.header.style.transition = `padding ${this.transitionDuration}ms ${easing}`;
+        this.body.style.transition = `padding-top ${this.transitionDuration}ms ${easing}`;
     }
     
     initializeBodyPadding() {
-        // Set initial body padding to account for fixed header
         this.body.style.paddingTop = `${this.originalHeaderHeight}px`;
     }
     
-    setupScrollListener() {
-        let ticking = false;
+    setupEventListeners() {
+        // Scroll events with passive listening
+        window.addEventListener('scroll', this.handleScroll, { passive: true });
         
-        const scrollHandler = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    this.handleScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
+        // Touch events for mobile-specific behavior
+        document.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+        document.addEventListener('touchend', this.handleTouchEnd, { passive: true });
         
-        window.addEventListener('scroll', scrollHandler, { passive: true });
-    }
-    
-    setupResizeListener() {
+        // Resize handling
         window.addEventListener('resize', this.handleResize);
+        
+        // Handle momentum scrolling end
+        window.addEventListener('scrollend', () => {
+            this.momentumScrolling = false;
+            this.velocityHistory = [];
+        }, { passive: true });
     }
     
-    handleResize() {
-        if (!this.isMobile()) {
-            this.cleanup();
-            return;
-        }
+    handleTouchStart(e) {
+        this.isTouching = true;
+        this.momentumScrolling = false;
+        this.touchStartY = e.touches[0].clientY;
+        this.velocityHistory = [];
+    }
+    
+    handleTouchEnd(e) {
+        this.isTouching = false;
         
-        // Recalculate heights on resize
-        this.measureHeaderHeights();
-        this.updateBodyPadding();
+        // Detect if momentum scrolling will occur
+        setTimeout(() => {
+            if (Math.abs(this.scrollVelocity) > 0.5) {
+                this.momentumScrolling = true;
+            }
+        }, 50);
+    }
+    
+    calculateVelocity(currentScrollY, currentTime) {
+        const timeDelta = currentTime - this.lastScrollTime;
+        const scrollDelta = currentScrollY - this.lastScrollY;
+        
+        if (timeDelta > 0) {
+            const velocity = scrollDelta / timeDelta;
+            
+            // Keep velocity history for smoothing
+            this.velocityHistory.push({
+                velocity: velocity,
+                time: currentTime
+            });
+            
+            // Clean old velocity data
+            this.velocityHistory = this.velocityHistory.filter(
+                v => currentTime - v.time < this.velocityDecayTime
+            );
+            
+            // Calculate average velocity
+            if (this.velocityHistory.length > 0) {
+                this.scrollVelocity = this.velocityHistory.reduce((sum, v) => sum + v.velocity, 0) 
+                                   / this.velocityHistory.length;
+            }
+        }
     }
     
     handleScroll() {
         const currentScrollY = window.pageYOffset;
+        const currentTime = performance.now();
+        
+        // Calculate velocity for mobile momentum detection
+        this.calculateVelocity(currentScrollY, currentTime);
+        
         const scrollDelta = currentScrollY - this.lastScrollY;
         
-        // Always update scroll direction and position, even during transitions
-        if (Math.abs(scrollDelta) > 1) { // Ignore tiny movements
+        // Update scroll direction with mobile-specific logic
+        if (Math.abs(scrollDelta) > 0.5) { // Lower threshold for mobile
             if (scrollDelta > 0) {
-                this.scrollDirection = 1; // scrolling down
+                this.scrollDirection = 1;
             } else if (scrollDelta < 0) {
-                this.scrollDirection = -1; // scrolling up
+                this.scrollDirection = -1;
             }
         }
         
-        
-        // During transitions, only allow state changes that make sense with current momentum
+        // Mobile-specific transition override logic
         if (this.isTransitioning) {
-            // If we're transitioning to collapsed but user is now scrolling up significantly,
-            // allow expansion to override
+            // During momentum scrolling, be more aggressive about overrides
+            const velocityThreshold = this.momentumScrolling ? 0.3 : 0.8;
+            
             if (this.isCollapsed && this.scrollDirection < 0 && 
                 (currentScrollY <= this.collapseThreshold || 
-                 scrollDelta < -20)) {
+                 (this.scrollVelocity < -velocityThreshold && !this.isTouching))) {
                 this.forceExpand();
             }
-            // If we're transitioning to expanded but user continues scrolling down,
-            // allow collapse to override
             else if (!this.isCollapsed && this.scrollDirection > 0 && 
                      currentScrollY > this.collapseThreshold && 
-                     scrollDelta > 10) {
+                     (scrollDelta > 8 || this.scrollVelocity > velocityThreshold)) {
                 this.forceCollapse();
             }
+            
+            this.lastScrollY = currentScrollY;
+            this.lastScrollTime = currentTime;
             return;
         }
         
-        else { // Normal decision logic when not transitioning
-            if (this.shouldCollapse(currentScrollY)) {
-                this.collapseHeader();
-            } else if (this.shouldExpand(currentScrollY)) {
-                this.expandHeader();
-            }
+        // Normal decision logic with mobile optimizations
+        if (this.shouldCollapse(currentScrollY)) {
+            this.collapseHeader();
+        } else if (this.shouldExpand(currentScrollY)) {
+            this.expandHeader();
         }
-
+        
         this.lastScrollY = currentScrollY;
-        return
+        this.lastScrollTime = currentTime;
     }
     
     shouldCollapse(scrollY) {
         if (this.isCollapsed) return false;
-
-        if (this.scrollDirection > 0 && 
-            scrollY > this.collapseThreshold) {
-                // console.log("Should collapse is TRUE: Direction " + this.scrollDirection + " & scrollY " + scrollY)
-                return true
-        };
+        
+        // More sensitive collapse for mobile
+        const minScrollDelta = this.momentumScrolling ? 3 : 5;
+        const scrollDelta = scrollY - this.lastScrollY;
+        
+        return this.scrollDirection > 0 && 
+               scrollY > this.collapseThreshold &&
+               scrollDelta > minScrollDelta;
     }
     
     shouldExpand(scrollY) {
         if (!this.isCollapsed) return false;
         
-        // More strict expansion criteria to prevent premature expansion
-        const isNearTop = window.pageYOffset < this.expandThreshold;
-        const hasScrolledUpSignificantly = this.lastScrollY > this.expandThreshold;
+        // Mobile-optimized expansion logic
+        const isNearTop = scrollY < this.collapseThreshold;
+        const hasScrolledUpSignificantly = (scrollY - this.lastScrollY) > this.expandThreshold;
+        const hasUpwardVelocity = this.scrollVelocity < -0.2;
         
-        if ((isNearTop || hasScrolledUpSignificantly) && this.scrollDirection < 0) {
-            // console.log("Should expand is TRUE: Direction " + this.scrollDirection + " & scrollY " + scrollY)
-            return true
-        };
+        return this.scrollDirection < 0 && 
+               (isNearTop || (hasScrolledUpSignificantly && hasUpwardVelocity));
     }
     
-    // Force methods for overriding transitions
     forceCollapse() {
         if (this.isCollapsed) return;
         
-        // Clear any existing transition timeout
         if (this.transitionTimeout) {
             clearTimeout(this.transitionTimeout);
         }
         
-        this.isTransitioning = false; // Reset transition state
+        this.isTransitioning = false;
         this.collapseHeader();
     }
     
     forceExpand() {
         if (!this.isCollapsed) return;
         
-        // Clear any existing transition timeout
         if (this.transitionTimeout) {
             clearTimeout(this.transitionTimeout);
         }
         
-        this.isTransitioning = false; // Reset transition state
+        this.isTransitioning = false;
         this.expandHeader();
     }
     
@@ -210,13 +248,9 @@ class MobileHeaderController {
         this.isTransitioning = true;
         this.isCollapsed = true;
         
-        // Add compact class for header styling
         this.header.classList.add('header-compact');
-        
-        // Update body padding to prevent content jump
         this.updateBodyPadding();
         
-        // Store timeout reference for potential cancellation
         this.transitionTimeout = setTimeout(() => {
             this.isTransitioning = false;
             this.transitionTimeout = null;
@@ -229,13 +263,9 @@ class MobileHeaderController {
         this.isTransitioning = true;
         this.isCollapsed = false;
         
-        // Remove compact class for header styling
         this.header.classList.remove('header-compact');
-        
-        // Update body padding to prevent content jump
         this.updateBodyPadding();
         
-        // Store timeout reference for potential cancellation
         this.transitionTimeout = setTimeout(() => {
             this.isTransitioning = false;
             this.transitionTimeout = null;
@@ -247,15 +277,43 @@ class MobileHeaderController {
         this.body.style.paddingTop = `${targetHeight}px`;
     }
     
+    handleResize() {
+        if (!this.isMobile()) {
+            this.cleanup();
+            return;
+        }
+        
+        this.measureHeaderHeights();
+        this.updateBodyPadding();
+        this.expandThreshold = window.innerHeight * 0.5;
+    }
+    
     cleanup() {
-        // Remove mobile-specific styles and behaviors
         this.header.classList.remove('header-compact');
         this.header.style.transition = '';
         this.body.style.transition = '';
         this.body.style.paddingTop = '';
+        
+        if (this.transitionTimeout) {
+            clearTimeout(this.transitionTimeout);
+        }
     }
     
-    // Utility function for debouncing
+    // Throttle for high-frequency events
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+    
+    // Debounce for resize events
     debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -274,10 +332,9 @@ document.addEventListener('DOMContentLoaded', () => {
     new MobileHeaderController();
 });
 
-// Handle page visibility changes (for mobile browsers that pause JS)
+// Handle page visibility changes
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
-        // Re-initialize if necessary when page becomes visible
-        const controller = new MobileHeaderController();
+        new MobileHeaderController();
     }
 });
