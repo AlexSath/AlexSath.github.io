@@ -103,6 +103,8 @@ class MobileHeaderController {
     }
     
     measureHeaderHeights() {
+        if (this.originalHeaderHeight != 0 && this.collapsedHeaderHeight != 0) { return; }
+
         this.header.classList.remove('header-compact');
         this.originalHeaderHeight = this.header.offsetHeight;
         
@@ -226,7 +228,7 @@ class MobileHeaderController {
         // setTimeout(() => {
         //     this.isOverscrolling = false;
         // }, 300);
-        console.log("touch end14")
+        console.log("touch end16")
     }
     
     calculateVelocity(currentScrollY, currentTime) {
