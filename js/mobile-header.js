@@ -103,7 +103,7 @@ class MobileHeaderController {
     }
     
     measureHeaderHeights() {
-        if (this.originalHeaderHeight != 0 && this.collapsedHeaderHeight != 0) { return; }
+        // if (this.originalHeaderHeight != 0 && this.collapsedHeaderHeight != 0) { return; }
 
         this.header.classList.remove('header-compact');
         this.originalHeaderHeight = this.header.offsetHeight;
@@ -111,7 +111,8 @@ class MobileHeaderController {
         this.header.classList.add('header-compact');
         this.collapsedHeaderHeight = this.header.offsetHeight;
         
-        this.header.classList.remove('header-compact');
+        // only re-remove the header compact element if the element was already expanded
+        if (!this.isCollapsed) { this.header.classList.remove('header-compact') };
     }
     
     setupTransitions() {
@@ -218,17 +219,17 @@ class MobileHeaderController {
         this.isTouching = false;
         
         // Detect if momentum scrolling will occur
-        // setTimeout(() => {
-        //     if (Math.abs(this.scrollVelocity) > 0.5 && !this.isOverscrolling) {
-        //         this.momentumScrolling = true;
-        //     }
-        // }, 50);
+        setTimeout(() => {
+            if (Math.abs(this.scrollVelocity) > 0.5 && !this.isOverscrolling) {
+                this.momentumScrolling = true;
+            }
+        }, 50);
         
-        // // Reset overscroll flag after a delay
-        // setTimeout(() => {
-        //     this.isOverscrolling = false;
-        // }, 300);
-        console.log("touch end16")
+        // Reset overscroll flag after a delay
+        setTimeout(() => {
+            this.isOverscrolling = false;
+        }, 300);
+        console.log("touch end18")
     }
     
     calculateVelocity(currentScrollY, currentTime) {
