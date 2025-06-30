@@ -79,7 +79,7 @@ class MobileHeaderController {
         if (this.supportsVisualViewport) {
             return window.visualViewport.pageTop;
         }
-        return window.pageYOffset || document.documentElement.scrollTop;
+        return window.pageYOffset; // || document.documentElement.scrollTop;
     }
     
     // Enhanced viewport height getter
@@ -185,6 +185,7 @@ class MobileHeaderController {
         const distanceFromBottom = documentHeight - (scrollY + viewportHeight);
         
         // Dead zone is active when very close to bottom
+        // console.log(distanceFromBottom)
         return distanceFromBottom < this.bottomDeadZone;
     }
     
@@ -260,6 +261,7 @@ class MobileHeaderController {
         if (this.isInBottomDeadZone()) {
             this.lastScrollY = currentScrollY;
             this.lastScrollTime = currentTime;
+            console.log("in deadzone")
             return;
         }
         
