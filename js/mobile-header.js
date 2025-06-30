@@ -14,7 +14,7 @@
     const COMPACT_AFTER_SCROLL = 100;
     const DEBOUNCE_DELAY = 16; // ~60fps
     const TRANSITION_COOLDOWN = 500; // Prevent state changes for 500ms after transition
-    const HYSTERESIS_BUFFER = 30; // Different thresholds for up/down to prevent oscillation
+    const HYSTERESIS_BUFFER = 100; // Different thresholds for up/down to prevent oscillation
     
     // State tracking
     let lastScrollTop = 0;
