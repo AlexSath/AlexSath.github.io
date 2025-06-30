@@ -226,7 +226,7 @@ class MobileHeaderController {
         // setTimeout(() => {
         //     this.isOverscrolling = false;
         // }, 300);
-        console.log("touch end12")
+        console.log("touch end14")
     }
     
     calculateVelocity(currentScrollY, currentTime) {
@@ -420,6 +420,8 @@ class MobileHeaderController {
         if (this.transitionTimeout) {
             clearTimeout(this.transitionTimeout);
         }
+
+        console.log("cleanup")
         
         // Remove event listeners
         window.removeEventListener('scroll', this.handleScroll);
