@@ -124,7 +124,6 @@ class MobileHeaderController {
             }
         }
         
-        this.lastScrollY = currentScrollY;
         
         // During transitions, only allow state changes that make sense with current momentum
         if (this.isTransitioning) {
@@ -133,45 +132,55 @@ class MobileHeaderController {
             if (this.isCollapsed && this.scrollDirection < 0 && 
                 (currentScrollY <= this.collapseThreshold || 
                  scrollDelta < -20)) {
-                this.forceExpand(currentScrollY);
+                this.forceExpand();
             }
             // If we're transitioning to expanded but user continues scrolling down,
             // allow collapse to override
             else if (!this.isCollapsed && this.scrollDirection > 0 && 
                      currentScrollY > this.collapseThreshold && 
                      scrollDelta > 10) {
-                this.forceCollapse(currentScrollY);
+                this.forceCollapse();
             }
             return;
         }
         
-        // Normal decision logic when not transitioning
-        if (this.shouldCollapse(currentScrollY)) {
-            this.collapseHeader();
-        } else if (this.shouldExpand(currentScrollY)) {
-            this.expandHeader();
+        else { // Normal decision logic when not transitioning
+            if (this.shouldCollapse(currentScrollY)) {
+                this.collapseHeader();
+            } else if (this.shouldExpand(currentScrollY)) {
+                this.expandHeader();
+            }
         }
+
+        this.lastScrollY = currentScrollY;
+        return
     }
     
     shouldCollapse(scrollY) {
-        return !this.isCollapsed && 
-               this.scrollDirection > 0 && 
-               scrollY > this.collapseThreshold;
+        if (this.isCollapsed) return false;
+
+        if (this.scrollDirection > 0 && 
+            scrollY > this.collapseThreshold) {
+                // console.log("Should collapse is TRUE: Direction " + this.scrollDirection + " & scrollY " + scrollY)
+                return true
+        };
     }
     
     shouldExpand(scrollY) {
         if (!this.isCollapsed) return false;
         
         // More strict expansion criteria to prevent premature expansion
-        const isNearTop = scrollY <= this.collapseThreshold;
-        const hasScrolledUpSignificantly = this.scrollDirection < 0 && 
-                                          this.lastScrollY < (this.expandThreshold * 0.8);
+        const isNearTop = window.pageYOffset < this.expandThreshold;
+        const hasScrolledUpSignificantly = this.lastScrollY > this.expandThreshold;
         
-        return isNearTop || hasScrolledUpSignificantly;
+        if ((isNearTop || hasScrolledUpSignificantly) && this.scrollDirection < 0) {
+            // console.log("Should expand is TRUE: Direction " + this.scrollDirection + " & scrollY " + scrollY)
+            return true
+        };
     }
     
     // Force methods for overriding transitions
-    forceCollapse(scrollY) {
+    forceCollapse() {
         if (this.isCollapsed) return;
         
         // Clear any existing transition timeout
@@ -183,7 +192,7 @@ class MobileHeaderController {
         this.collapseHeader();
     }
     
-    forceExpand(scrollY) {
+    forceExpand() {
         if (!this.isCollapsed) return;
         
         // Clear any existing transition timeout
