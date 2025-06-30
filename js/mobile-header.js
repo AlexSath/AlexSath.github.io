@@ -132,14 +132,14 @@ class MobileHeaderController {
             // allow expansion to override
             if (this.isCollapsed && this.scrollDirection < 0 && 
                 (currentScrollY <= this.collapseThreshold || 
-                 Math.abs(scrollDelta) > 20)) {
+                 scrollDelta < -20)) {
                 this.forceExpand(currentScrollY);
             }
             // If we're transitioning to expanded but user continues scrolling down,
             // allow collapse to override
             else if (!this.isCollapsed && this.scrollDirection > 0 && 
                      currentScrollY > this.collapseThreshold && 
-                     Math.abs(scrollDelta) > 10) {
+                     scrollDelta > 10) {
                 this.forceCollapse(currentScrollY);
             }
             return;
