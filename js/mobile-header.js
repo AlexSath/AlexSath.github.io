@@ -386,6 +386,8 @@ class MobileHeaderController {
         
         this.header.classList.remove('header-compact');
         this.updateBodyPadding();
+
+        console.log("regular expansion")
         
         this.transitionTimeout = setTimeout(() => {
             this.isTransitioning = false;
