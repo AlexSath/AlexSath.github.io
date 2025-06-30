@@ -196,6 +196,7 @@ class MobileHeaderController {
         this.velocityHistory = [];
         this.isOverscrolling = false;
         this.overscrollStartY = this.getScrollY();
+        console.log("touch start")
     }
     
     handleTouchMove(e) {
@@ -225,6 +226,7 @@ class MobileHeaderController {
         setTimeout(() => {
             this.isOverscrolling = false;
         }, 300);
+        console.log("touch end")
     }
     
     calculateVelocity(currentScrollY, currentTime) {
@@ -357,6 +359,7 @@ class MobileHeaderController {
         }
         
         this.isTransitioning = false;
+        console.log("Force expansion")
         this.expandHeader();
     }
     
