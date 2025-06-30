@@ -1,243 +1,226 @@
 /**
- * Mobile Header Scroll Behavior with Dynamic Content Positioning
- * Hides navigation and social icons on scroll down, shows on scroll up
- * Keeps the main name/title visible at all times
- * Dynamically adjusts headline position to avoid header overlap
- * Fixed: Prevents content jumping and header jittering
+ * Mobile Header Collapse System
+ * Provides smooth header transitions with no content jumping
+ * Optimized for performance and user experience
  */
-(function() {
-    'use strict';
-    
-    // Configuration
-    const MOBILE_BREAKPOINT = 1080;
-    const SCROLL_THRESHOLD = 20; // Increased threshold to reduce jittering
-    const COMPACT_AFTER_SCROLL = 100;
-    const DEBOUNCE_DELAY = 16; // ~60fps
-    const TRANSITION_COOLDOWN = 500; // Prevent state changes for 500ms after transition
-    const HYSTERESIS_BUFFER = 100; // Different thresholds for up/down to prevent oscillation
-    
-    // State tracking
-    let lastScrollTop = 0;
-    let ticking = false;
-    let isTransitioning = false;
-    let lastTransitionTime = 0;
-    let headerHeightCache = { expanded: null, compact: null };
-    let scrollDirection = 0; // -1 for up, 1 for down, 0 for none
-    
-    // Check if mobile device
-    function isMobileDevice() {
-        return window.innerWidth <= MOBILE_BREAKPOINT;
+
+class MobileHeaderController {
+    constructor() {
+        this.header = document.getElementById('header');
+        this.body = document.body;
+        
+        // State management
+        this.isCollapsed = false;
+        this.isTransitioning = false;
+        this.lastScrollY = 0;
+        this.scrollDirection = 0;
+        
+        // Thresholds
+        this.collapseThreshold = 50; // pixels scrolled down to collapse
+        this.expandThreshold = window.innerHeight * 0.5; // 1/2 screen height
+        
+        // Timing and easing
+        this.transitionDuration = 300; // milliseconds
+        this.debounceDelay = 16; // ~60fps
+        
+        // Store original header height for calculations
+        this.originalHeaderHeight = 0;
+        this.collapsedHeaderHeight = 0;
+        
+        // Bind methods
+        this.handleScroll = this.debounce(this.handleScroll.bind(this), this.debounceDelay);
+        this.handleResize = this.debounce(this.handleResize.bind(this), 100);
+        
+        this.init();
     }
     
-    // Cache header heights for smooth transitions
-    function cacheHeaderHeights() {
-        const header = document.getElementById('header');
-        if (!header || !isMobileDevice()) return;
-        
-        // Get expanded height
-        header.classList.remove('header-compact');
-        headerHeightCache.expanded = header.offsetHeight;
-        
-        // Get compact height
-        header.classList.add('header-compact');
-        headerHeightCache.compact = header.offsetHeight;
-        
-        // Reset to current state
-        header.classList.remove('header-compact');
-    }
-    
-    // Smooth content adjustment to prevent jumping
-    function adjustContentPosition(newHeaderHeight, oldHeaderHeight, isExpanding = false) {
-        const headline = document.getElementsByClassName('top')[0];
-        if (!headline || !isMobileDevice()) return;
-        
-        const heightDiff = newHeaderHeight - oldHeaderHeight;
-        
-        // Adjust scroll position to compensate for header height change
-        if (heightDiff !== 0) {
-            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (isExpanding && heightDiff > 0) {
-                // When expanding (header getting taller), we need to scroll down 
-                // to compensate so the content stays in the same visual position
-                if (currentScrollTop > 0) {
-                    window.scrollTo(0, currentScrollTop + heightDiff);
-                }
-            } else if (!isExpanding && heightDiff < 0) {
-                // When compacting (header getting shorter), we need to scroll up
-                // to keep content in the same visual position
-                window.scrollTo(0, Math.max(0, currentScrollTop + heightDiff));
-            }
-        }
-        
-        // Set headline margin
-        headline.style.marginTop = `${newHeaderHeight}px`;
-    }
-    
-    // Calculate and set headline top position (mobile only)
-    function adjustHeadlinePosition() {
-        const header = document.getElementById('header');
-        const headline = document.getElementsByClassName('top')[0];
-        
-        if (!header || !headline) return;
-        
-        // Only adjust position on mobile devices
-        if (!isMobileDevice()) {
-            headline.style.marginTop = '';
+    init() {
+        // Only activate on mobile devices
+        if (!this.isMobile()) {
             return;
         }
         
-        // Get the actual height of the header
-        const headerHeight = header.offsetHeight;
+        this.measureHeaderHeights();
+        this.setupScrollListener();
+        this.setupResizeListener();
+        this.initializeBodyPadding();
         
-        // Set the headline to start right after the header
-        headline.style.marginTop = `${headerHeight}px`;
+        // Setup CSS transitions
+        this.setupTransitions();
     }
     
-    // Initialize header behavior
-    function initMobileHeader() {
-        const header = document.getElementById('header');
-        if (!header) return;
+    isMobile() {
+        return window.innerWidth <= 1080; // Based on $desktop-breakpoint from SCSS
+    }
+    
+    measureHeaderHeights() {
+        // Temporarily ensure header is expanded to measure
+        this.header.classList.remove('header-compact');
+        this.originalHeaderHeight = this.header.offsetHeight;
         
-        // Cache header heights on mobile
-        if (isMobileDevice()) {
-            cacheHeaderHeights();
-            adjustHeadlinePosition();
-        }
+        // Measure collapsed height
+        this.header.classList.add('header-compact');
+        this.collapsedHeaderHeight = this.header.offsetHeight;
         
-        function updateHeader() {
-            if (!isMobileDevice()) {
-                ticking = false;
-                return;
-            }
-            
-            const now = Date.now();
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollDelta = scrollTop - lastScrollTop;
-            
-            // Determine scroll direction
-            if (Math.abs(scrollDelta) >= SCROLL_THRESHOLD) {
-                scrollDirection = scrollDelta > 0 ? 1 : -1;
-            }
-            
-            // Skip if we're in cooldown period after a recent transition
-            if (now - lastTransitionTime < TRANSITION_COOLDOWN) {
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-                ticking = false;
-                return;
-            }
-            
-            // Skip if we haven't scrolled enough
-            if (Math.abs(scrollDelta) < SCROLL_THRESHOLD) {
-                ticking = false;
-                return;
-            }
-            
-            const isCurrentlyCompact = header.classList.contains('header-compact');
-            let shouldBeCompact = isCurrentlyCompact; // Default to current state
-            
-            // Use hysteresis and direction-based logic to prevent oscillation
-            if (scrollDirection > 0) {
-                // Scrolling down - compact if past threshold
-                if (scrollTop > COMPACT_AFTER_SCROLL + HYSTERESIS_BUFFER) {
-                    shouldBeCompact = true;
-                }
-            } else if (scrollDirection < 0) {
-                // Scrolling up - always expand (show menu) regardless of position
-                // This allows users to access menu by scrolling up from anywhere
-                shouldBeCompact = false;
-            }
-            
-            // Only change state if it's actually different and we have a clear direction
-            if (isCurrentlyCompact !== shouldBeCompact && Math.abs(scrollDelta) >= SCROLL_THRESHOLD) {
-                lastTransitionTime = now;
-                isTransitioning = true;
-                
-                const oldHeight = header.offsetHeight;
-                const newHeight = shouldBeCompact ? 
-                    headerHeightCache.compact : 
-                    headerHeightCache.expanded;
-                
-                const isExpanding = !shouldBeCompact; // expanding when going from compact to expanded
-                
-                // Apply the class change
-                if (shouldBeCompact) {
-                    header.classList.add('header-compact');
-                } else {
-                    header.classList.remove('header-compact');
-                }
-                
-                // Smooth content adjustment with expansion awareness
-                adjustContentPosition(newHeight, oldHeight, isExpanding);
-                
-                // Reset transition flag after animation completes
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 300); // Match CSS transition duration
-            }
-            
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            ticking = false;
-        }
+        // Reset to expanded state initially
+        this.header.classList.remove('header-compact');
+    }
+    
+    setupTransitions() {
+        // Add smooth transitions for header
+        this.header.style.transition = `padding ${this.transitionDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1)`;
         
-        function requestTick() {
+        // Add smooth transitions for body padding
+        this.body.style.transition = `padding-top ${this.transitionDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1)`;
+    }
+    
+    initializeBodyPadding() {
+        // Set initial body padding to account for fixed header
+        this.body.style.paddingTop = `${this.originalHeaderHeight}px`;
+    }
+    
+    setupScrollListener() {
+        let ticking = false;
+        
+        const scrollHandler = () => {
             if (!ticking) {
-                requestAnimationFrame(updateHeader);
+                requestAnimationFrame(() => {
+                    this.handleScroll();
+                    ticking = false;
+                });
                 ticking = true;
             }
-        }
+        };
         
-        // Debounced scroll handler
-        let scrollTimer;
-        function handleScroll() {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(requestTick, DEBOUNCE_DELAY);
-        }
-        
-        // Event listeners
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            // Clear any ongoing transitions and reset timers
-            isTransitioning = false;
-            lastTransitionTime = 0;
-            scrollDirection = 0;
-            
-            if (!isMobileDevice()) {
-                header.classList.remove('header-compact');
-                // Reset headline positioning for desktop
-                const headline = document.getElementsByClassName("top")[0];
-                if (headline) {
-                    headline.style.marginTop = '';
-                }
-            } else {
-                // Recache heights and recalculate for mobile after resize
-                setTimeout(() => {
-                    cacheHeaderHeights();
-                    adjustHeadlinePosition();
-                }, 100);
-            }
-        });
-        
-        // Also adjust on orientation change for mobile devices
-        window.addEventListener('orientationchange', function() {
-            if (isMobileDevice()) {
-                isTransitioning = false;
-                lastTransitionTime = 0;
-                scrollDirection = 0;
-                setTimeout(() => {
-                    cacheHeaderHeights();
-                    adjustHeadlinePosition();
-                }, 200);
-            }
-        });
+        window.addEventListener('scroll', scrollHandler, { passive: true });
     }
     
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMobileHeader);
-    } else {
-        initMobileHeader();
+    setupResizeListener() {
+        window.addEventListener('resize', this.handleResize);
     }
-})();
+    
+    handleResize() {
+        if (!this.isMobile()) {
+            this.cleanup();
+            return;
+        }
+        
+        // Recalculate heights on resize
+        this.measureHeaderHeights();
+        this.updateBodyPadding();
+    }
+    
+    handleScroll() {
+        if (this.isTransitioning) return;
+        
+        const currentScrollY = window.pageYOffset;
+        const scrollDelta = currentScrollY - this.lastScrollY;
+        
+        // Determine scroll direction
+        if (scrollDelta > 0) {
+            this.scrollDirection = 1; // scrolling down
+        } else if (scrollDelta < 0) {
+            this.scrollDirection = -1; // scrolling up
+        }
+        
+        this.lastScrollY = currentScrollY;
+        
+        // Decision logic
+        if (this.shouldCollapse(currentScrollY)) {
+            this.collapseHeader();
+        } else if (this.shouldExpand(currentScrollY)) {
+            this.expandHeader();
+        }
+    }
+    
+    shouldCollapse(scrollY) {
+        return !this.isCollapsed && 
+               this.scrollDirection > 0 && 
+               scrollY > this.collapseThreshold;
+    }
+    
+    shouldExpand(scrollY) {
+        if (!this.isCollapsed) return false;
+        
+        // Expand if scrolling up and either:
+        // 1. Scrolled up past the expand threshold, OR
+        // 2. Scrolled back to near the top (within collapse threshold)
+        return this.scrollDirection < 0 && 
+               (this.lastScrollY < this.expandThreshold || scrollY <= this.collapseThreshold);
+    }
+    
+    collapseHeader() {
+        if (this.isCollapsed || this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        this.isCollapsed = true;
+        
+        // Add compact class for header styling
+        this.header.classList.add('header-compact');
+        
+        // Update body padding to prevent content jump
+        this.updateBodyPadding();
+        
+        // Reset transition flag after animation completes
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, this.transitionDuration);
+    }
+    
+    expandHeader() {
+        if (!this.isCollapsed || this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        this.isCollapsed = false;
+        
+        // Remove compact class for header styling
+        this.header.classList.remove('header-compact');
+        
+        // Update body padding to prevent content jump
+        this.updateBodyPadding();
+        
+        // Reset transition flag after animation completes
+        setTimeout(() => {
+            this.isTransitioning = false;
+        }, this.transitionDuration);
+    }
+    
+    updateBodyPadding() {
+        const targetHeight = this.isCollapsed ? this.collapsedHeaderHeight : this.originalHeaderHeight;
+        this.body.style.paddingTop = `${targetHeight}px`;
+    }
+    
+    cleanup() {
+        // Remove mobile-specific styles and behaviors
+        this.header.classList.remove('header-compact');
+        this.header.style.transition = '';
+        this.body.style.transition = '';
+        this.body.style.paddingTop = '';
+    }
+    
+    // Utility function for debouncing
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new MobileHeaderController();
+});
+
+// Handle page visibility changes (for mobile browsers that pause JS)
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        // Re-initialize if necessary when page becomes visible
+        const controller = new MobileHeaderController();
+    }
+});

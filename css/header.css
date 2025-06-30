@@ -80,7 +80,7 @@ a {
     flex-direction: column;
     text-align: center;
     gap: 15px;
-    transition: padding 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
   }
 }
 @media (max-width: 1080px) and (max-width: 1080px) {

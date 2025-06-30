@@ -125,7 +125,7 @@ a {
     @include flex-center(column);
     text-align: center;
     gap: 15px;
-    transition: padding 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
     
     &.header-compact {
       padding: 2% 5% 2% 5%;
