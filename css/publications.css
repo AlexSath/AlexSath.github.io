@@ -1,53 +1,85 @@
-:root {
-    --primary-color: #BE713B; 
-    --secondary-color: #6B0504;
-    --accent-color: #26547C;
-    --background-color: #F5F5F5;
-    --text-color: #161616;
-}
-
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+  background-color: #F5F5F5;
+  color: #161616;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 #content .accented {
-    color: var(--accent-color);
-    font-weight: bolder;
+  color: #26547C;
+  font-weight: bolder;
 }
-
 #content .secondaryAccent {
-    color: var(--primary-color);
+  color: #BE713B;
 }
-
 #content .pubFooter {
-    font-size: 1em;
-    font-style: italic;
-    text-align: right;
-    color: var(--text-color);
+  font-size: 1em;
+  font-style: italic;
+  text-align: right;
+  color: #161616;
 }
-
 #content a {
-    color: var(--primary-color);
-    font-style: italic;
-    text-decoration: underline;
+  color: #BE713B;
+  font-style: italic;
+  text-decoration: underline;
 }
-
 #content a:hover {
-    color: var(--primary-color);
-    font-style: normal;
-    font-weight: bold;
-    text-decoration: none;
+  color: #BE713B;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .contentBlock {
-    padding-left: 25%;
+  flex-grow: 1;
+}
+@media (max-width: 1080px) {
+  .contentBlock {
+    padding-left: 0.5%;
+    padding-right: 2.5%;
+  }
+}
+@media (min-width: 1080px) {
+  .contentBlock {
+    padding-left: 24%;
     padding-right: 25%;
-    flex-grow: 1;
+  }
 }
 
 .pubListBlock {
-    align-self: center;
-    padding-bottom: 10%;
-    margin-bottom: 0;
+  align-self: center;
+  padding-bottom: 10%;
+  margin-bottom: 0;
 }
+.pubListBlock h2 {
+  font-family: "Merriweather", serif;
+  color: #BE713B;
+  text-align: center;
+}
+@media (max-width: 1080px) {
+  .pubListBlock h2 {
+    font-size: 1.98em;
+  }
+}
+@media (min-width: 1080px) {
+  .pubListBlock h2 {
+    font-size: 2.25em;
+  }
+}
+.pubListBlock ul li {
+  font-family: "Montserrat", sans-serif;
+  color: #161616;
+  margin-bottom: 1.5%;
+}
+@media (max-width: 1080px) {
+  .pubListBlock ul li {
+    font-size: 0.99em;
+  }
+}
+@media (min-width: 1080px) {
+  .pubListBlock ul li {
+    font-size: 0.999em;
+  }
+}
+
+/*# sourceMappingURL=publications.css.map */

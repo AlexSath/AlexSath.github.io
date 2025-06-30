@@ -352,7 +352,7 @@ a {
   display: flex;
   
   @media (max-width: $desktop-breakpoint) {
-    padding: 5% 7.5%;
+    padding: 5% 5%;
   }
   @media (min-width: $desktop-breakpoint) {
     padding: 5% 0;

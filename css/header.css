@@ -330,7 +330,7 @@ a {
 }
 @media (max-width: 1080px) {
   #content {
-    padding: 5% 7.5%;
+    padding: 5% 5%;
   }
 }
 @media (min-width: 1080px) {
