@@ -216,16 +216,16 @@ class MobileHeaderController {
         this.isTouching = false;
         
         // Detect if momentum scrolling will occur
-        setTimeout(() => {
-            if (Math.abs(this.scrollVelocity) > 0.5 && !this.isOverscrolling) {
-                this.momentumScrolling = true;
-            }
-        }, 50);
+        // setTimeout(() => {
+        //     if (Math.abs(this.scrollVelocity) > 0.5 && !this.isOverscrolling) {
+        //         this.momentumScrolling = true;
+        //     }
+        // }, 50);
         
-        // Reset overscroll flag after a delay
-        setTimeout(() => {
-            this.isOverscrolling = false;
-        }, 300);
+        // // Reset overscroll flag after a delay
+        // setTimeout(() => {
+        //     this.isOverscrolling = false;
+        // }, 300);
         console.log("touch end10")
     }
     
