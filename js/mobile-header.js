@@ -22,6 +22,7 @@ class MobileHeaderController {
         // Timing and easing
         this.transitionDuration = 300; // milliseconds
         this.debounceDelay = 16; // ~60fps
+        this.transitionTimeout = null; // Store timeout reference
         
         // Store original header height for calculations
         this.originalHeaderHeight = 0;
@@ -111,21 +112,40 @@ class MobileHeaderController {
     }
     
     handleScroll() {
-        if (this.isTransitioning) return;
-        
         const currentScrollY = window.pageYOffset;
         const scrollDelta = currentScrollY - this.lastScrollY;
         
-        // Determine scroll direction
-        if (scrollDelta > 0) {
-            this.scrollDirection = 1; // scrolling down
-        } else if (scrollDelta < 0) {
-            this.scrollDirection = -1; // scrolling up
+        // Always update scroll direction and position, even during transitions
+        if (Math.abs(scrollDelta) > 1) { // Ignore tiny movements
+            if (scrollDelta > 0) {
+                this.scrollDirection = 1; // scrolling down
+            } else if (scrollDelta < 0) {
+                this.scrollDirection = -1; // scrolling up
+            }
         }
         
         this.lastScrollY = currentScrollY;
         
-        // Decision logic
+        // During transitions, only allow state changes that make sense with current momentum
+        if (this.isTransitioning) {
+            // If we're transitioning to collapsed but user is now scrolling up significantly,
+            // allow expansion to override
+            if (this.isCollapsed && this.scrollDirection < 0 && 
+                (currentScrollY <= this.collapseThreshold || 
+                 Math.abs(scrollDelta) > 20)) {
+                this.forceExpand(currentScrollY);
+            }
+            // If we're transitioning to expanded but user continues scrolling down,
+            // allow collapse to override
+            else if (!this.isCollapsed && this.scrollDirection > 0 && 
+                     currentScrollY > this.collapseThreshold && 
+                     Math.abs(scrollDelta) > 10) {
+                this.forceCollapse(currentScrollY);
+            }
+            return;
+        }
+        
+        // Normal decision logic when not transitioning
         if (this.shouldCollapse(currentScrollY)) {
             this.collapseHeader();
         } else if (this.shouldExpand(currentScrollY)) {
@@ -142,11 +162,37 @@ class MobileHeaderController {
     shouldExpand(scrollY) {
         if (!this.isCollapsed) return false;
         
-        // Expand if scrolling up and either:
-        // 1. Scrolled up past the expand threshold, OR
-        // 2. Scrolled back to near the top (within collapse threshold)
-        return this.scrollDirection < 0 && 
-               (this.lastScrollY < this.expandThreshold || scrollY <= this.collapseThreshold);
+        // More strict expansion criteria to prevent premature expansion
+        const isNearTop = scrollY <= this.collapseThreshold;
+        const hasScrolledUpSignificantly = this.scrollDirection < 0 && 
+                                          this.lastScrollY < (this.expandThreshold * 0.8);
+        
+        return isNearTop || hasScrolledUpSignificantly;
+    }
+    
+    // Force methods for overriding transitions
+    forceCollapse(scrollY) {
+        if (this.isCollapsed) return;
+        
+        // Clear any existing transition timeout
+        if (this.transitionTimeout) {
+            clearTimeout(this.transitionTimeout);
+        }
+        
+        this.isTransitioning = false; // Reset transition state
+        this.collapseHeader();
+    }
+    
+    forceExpand(scrollY) {
+        if (!this.isCollapsed) return;
+        
+        // Clear any existing transition timeout
+        if (this.transitionTimeout) {
+            clearTimeout(this.transitionTimeout);
+        }
+        
+        this.isTransitioning = false; // Reset transition state
+        this.expandHeader();
     }
     
     collapseHeader() {
@@ -161,9 +207,10 @@ class MobileHeaderController {
         // Update body padding to prevent content jump
         this.updateBodyPadding();
         
-        // Reset transition flag after animation completes
-        setTimeout(() => {
+        // Store timeout reference for potential cancellation
+        this.transitionTimeout = setTimeout(() => {
             this.isTransitioning = false;
+            this.transitionTimeout = null;
         }, this.transitionDuration);
     }
     
@@ -179,9 +226,10 @@ class MobileHeaderController {
         // Update body padding to prevent content jump
         this.updateBodyPadding();
         
-        // Reset transition flag after animation completes
-        setTimeout(() => {
+        // Store timeout reference for potential cancellation
+        this.transitionTimeout = setTimeout(() => {
             this.isTransitioning = false;
+            this.transitionTimeout = null;
         }, this.transitionDuration);
     }
     
