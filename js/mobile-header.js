@@ -188,7 +188,7 @@ class MobileHeaderController {
         const distanceFromBottom = documentHeight - (scrollY + viewportHeight);
         
         // Dead zone is active when very close to bottom
-        // console.log(distanceFromBottom)
+        // // console.log(distanceFromBottom)
         return distanceFromBottom < this.bottomDeadZone;
     }
     
@@ -199,7 +199,7 @@ class MobileHeaderController {
         this.velocityHistory = [];
         this.isOverscrolling = false;
         this.overscrollStartY = this.getScrollY();
-        console.log("touch start")
+        // console.log("touch start")
     }
     
     handleTouchMove(e) {
@@ -229,7 +229,7 @@ class MobileHeaderController {
         setTimeout(() => {
             this.isOverscrolling = false;
         }, 300);
-        console.log("touch end18")
+        // console.log("touch end18")
     }
     
     calculateVelocity(currentScrollY, currentTime) {
@@ -266,7 +266,7 @@ class MobileHeaderController {
         if (this.isInBottomDeadZone()) {
             this.lastScrollY = currentScrollY;
             this.lastScrollTime = currentTime;
-            console.log("in deadzone")
+            // console.log("in deadzone")
             return;
         }
         
@@ -362,7 +362,7 @@ class MobileHeaderController {
         }
         
         this.isTransitioning = false;
-        console.log("Force expansion")
+        // console.log("Force expansion")
         this.expandHeader();
     }
     
@@ -390,7 +390,7 @@ class MobileHeaderController {
         this.header.classList.remove('header-compact');
         this.updateBodyPadding();
 
-        console.log("regular expansion")
+        // console.log("regular expansion")
         
         this.transitionTimeout = setTimeout(() => {
             this.isTransitioning = false;
@@ -424,7 +424,7 @@ class MobileHeaderController {
             clearTimeout(this.transitionTimeout);
         }
 
-        console.log("cleanup")
+        // console.log("cleanup")
         
         // Remove event listeners
         window.removeEventListener('scroll', this.handleScroll);
