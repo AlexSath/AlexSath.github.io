@@ -1,116 +1,182 @@
-:root {
-    --primary-color: #BE713B; 
-    --secondary-color: #6B0504;
-    --accent-color: #26547C;
-    --background-color: #F5F5F5;
-    --text-color: #161616;
-}
-
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+  background-color: #F5F5F5;
+  color: #161616;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 #content {
-    flex-direction: column;
-    justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 1080px) {
+  #content {
+    margin-bottom: 15%;
+  }
 }
 
 .contentBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 1080px) {
+  .contentBlock {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+}
+@media (min-width: 1080px) {
+  .contentBlock {
     padding-left: 15%;
     padding-right: 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  }
 }
 
 .peopleContentBlock.text {
-    padding-bottom: 7.5%;
-    text-align: center;
+  padding-bottom: 7.5%;
+  text-align: center;
+}
+.peopleContentBlock.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1.5%;
 }
 
 #peopleContentBlockText h2 {
-    color: var(--primary-color);
-    font-size: 3.25em;
+  color: #BE713B;
+  font-family: "Merriweather", serif;
+  text-align: center;
 }
-
+@media (max-width: 1080px) {
+  #peopleContentBlockText h2 {
+    font-size: 2.97em;
+  }
+}
+@media (min-width: 1080px) {
+  #peopleContentBlockText h2 {
+    font-size: 3.375em;
+  }
+}
 #peopleContentBlockText p {
-    font-size: 1.75em;
-    color: var(--text-color);
+  font-family: "Montserrat", sans-serif;
+  color: #161616;
+  text-align: center;
 }
-
-.peopleContentBlock.gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+@media (max-width: 1080px) {
+  #peopleContentBlockText p {
+    font-size: 1.7325em;
+  }
 }
-
-/* Media queries for responsive resizing */
-@media (min-width: 1px) {
-    :root {
-        --block-width: 100px;
-    }
-}
-
-@media (min-width: 576px) {
-    :root {
-        --block-width: 150px;
-    }
-}
-
-@media (min-width: 768px) {
-    :root {
-        --block-width: 200px;
-    }
-}
-
-@media (min-width: 992px) {
-    :root {
-        --block-width: 250px;
-    }
-}
-
-@media (min-width: 1200px) {
-    :root {
-        --block-width: 300px;
-    }
+@media (min-width: 1080px) {
+  #peopleContentBlockText p {
+    font-size: 1.74825em;
+  }
 }
 
 .personBlock {
-    width: var(--block-width);
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-bottom: 5%;
-    justify-content: center;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 5%;
+  justify-content: center;
 }
-
+@media (min-width: 1px) {
+  .personBlock {
+    width: 100px;
+  }
+}
+@media (min-width: 576px) {
+  .personBlock {
+    width: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .personBlock {
+    width: 200px;
+  }
+}
+@media (min-width: 992px) {
+  .personBlock {
+    width: 250px;
+  }
+}
+@media (min-width: 1200px) {
+  .personBlock {
+    width: 300px;
+  }
+}
+@media (max-width: 1080px) {
+  .personBlock {
+    width: 40%;
+  }
+}
 .personBlock h3 {
-    font-size: 1.66em;
-    text-align: center;
-    color: var(--accent-color);
-    font-weight: bold;
+  font-family: "Merriweather", serif;
+  text-align: center;
+  color: #26547C;
+  font-weight: bold;
 }
-
+@media (max-width: 1080px) {
+  .personBlock h3 {
+    font-size: 1.518em;
+  }
+}
+@media (min-width: 1080px) {
+  .personBlock h3 {
+    font-size: 1.725em;
+  }
+}
 .personBlock img {
-    width: 90%;
-    margin-left: 5%;
-    border-radius: 50%;
-    border-color: var(--accent-color);
-    border-style: solid;
-    border-width: 5px;
-    margin-bottom: 5%;
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 50%;
+  border-color: #26547C;
+  border-style: solid;
+  border-width: 5px;
+  margin-bottom: 5%;
+}
+.personBlock a {
+  text-decoration: none;
+  color: inherit;
+}
+.personBlock a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .personTitle {
-    font-style: italic;
-    font-size: 1.5em;
-    text-align: center;
-    color: var(--accent-color);
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
+  text-align: center;
+  color: #26547C;
+}
+@media (max-width: 1080px) {
+  .personTitle {
+    font-size: 1.485em;
+  }
+}
+@media (min-width: 1080px) {
+  .personTitle {
+    font-size: 1.4985em;
+  }
 }
 
 .personDescription {
-    font-size: 1.33em;
-    text-align: center;
-    color: var(--text-color);
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: #161616;
 }
+@media (max-width: 1080px) {
+  .personDescription {
+    font-size: 1.32em;
+  }
+}
+@media (min-width: 1080px) {
+  .personDescription {
+    font-size: 1.332em;
+  }
+}
+
+/*# sourceMappingURL=people.css.map */
