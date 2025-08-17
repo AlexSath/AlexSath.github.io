@@ -64,6 +64,7 @@ body {
 .iconBlock {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 2.5%;
   justify-content: center;
 }
 @media (max-width: 1080px) {
@@ -115,10 +116,6 @@ body {
 
 .experienceIcon {
   border-radius: 20%;
-  margin-left: 10%;
-  margin-top: 10%;
-  margin-right: 10%;
-  margin-bottom: 10%;
 }
 @media (min-width: 1px) {
   .experienceIcon {
