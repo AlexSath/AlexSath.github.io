@@ -1,60 +1,9 @@
-// Variables
-$primary-color: #BE713B;
-$secondary-color: #6B0504;
-$accent-color: #26547C;
-$background-color: #F5F5F5;
-$text-color: #161616;
-$font-serif: 'Merriweather', serif;
-$font-sans: 'Montserrat', sans-serif;
-$desktop-breakpoint: 1080px;
+// ==========================================================================
+// Projects Page Styles
+// ==========================================================================
 
-// Mixins
-@mixin flex-center($direction: row) {
-  display: flex;
-  flex-direction: $direction;
-
-  @media (max-width: $desktop-breakpoint) {
-    flex-direction: column;
-  }
-}
-
-@mixin responsive-icon($sizes) {
-  @each $breakpoint, $size in $sizes {
-    @media (min-width: $breakpoint) {
-      width: $size;
-      height: $size;
-    }
-  }
-}
-
-@mixin client-responsive-icon($size) {
-    @media (max-width: $desktop-breakpoint) {
-        width: 28px * $size;
-        height: 28px * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        width: 48px * $size;
-        width: 48px * $size;
-    }
-}
-
-@mixin client-responsive-header($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.66em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.75em * $size;
-    }
-}
-
-@mixin client-responsive-text($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.33em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.333em * $size;
-    }
-}
+@import 'variables';
+@import 'mixins';
 
 // General Styles
 body {
@@ -62,7 +11,7 @@ body {
   color: $text-color;
   margin: 0;
   font-family: $font-sans;
-  @include client-responsive-text(3);
+  @include client-responsive-text(1);
 }
 
 h1, h2 {
@@ -71,8 +20,8 @@ h1, h2 {
 }
 
 h3, h4, h5, h6 {
-    font-family: $font-serif;
-    color: $accent-color
+  font-family: $font-serif;
+  color: $accent-color;
 }
 
 p, li {
@@ -81,224 +30,105 @@ p, li {
 }
 
 section {
-    // justify-items: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    @media (max-width: $desktop-breakpoint) {
-        padding-left: 7.5%;
-        padding-right: 7.5%
-    }
-    @media (min-width: $desktop-breakpoint) {
-        padding-left: 20%;
-        padding-right: 20%;
-    }
-    @include flex-center(column);
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  @media (max-width: $desktop-breakpoint) {
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+  @include flex-center(column);
 }
 
 .socialIconBlock {
-    @media (max-width: $desktop-breakpoint) {
-        padding-top: 1.5%;
-        padding-right: 2.5%;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        padding-left: 2.5%;
-    }
+  @media (max-width: $desktop-breakpoint) {
+    padding-top: 1.5%;
+    padding-right: 2.5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 2.5%;
+  }
 
-    .socialIcon {
-        filter: invert(1);
-        @include client-responsive-icon(0.75);
-    }
+  .socialIcon {
+    filter: invert(1);
+    @include client-responsive-icon(0.75);
+  }
 }
-
-// // Header Section
-// #header {
-//     @include flex-center(row);
-//     flex-wrap: wrap;
-//     @media (max-width: $desktop-breakpoint) {
-//         padding: 1% 7.5%;
-//     }
-//     @media (min-width: $desktop-breakpoint) {
-//         padding: 1% 20%;
-//     }
-//     background-color: $primary-color;
-//     color: $background-color;
-
-//     h1 {
-//         margin: 0;
-//         font-size: 2em;
-//         color: $background-color;
-//     }
-
-//     .headerBlock {
-//         flex: 1 1 auto;
-
-//         &.social {
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-//             @media (max-width: $desktop-breakpoint) {
-//                 justify-content: flex-start;
-//             }
-//             @media (min-width: $desktop-breakpoint) {
-//                 justify-content: flex-end;
-//             }
-
-//         }
-//     }
-// }
-
-// // About Section
-// #about {
-//     justify-content: center;
-
-//     .contentSubBlock {
-//         padding-top: 2.5%;
-
-//         &.headshot {
-//             text-align: center;
-
-//             .headshotImg {
-//                 @include client-responsive-icon(5);
-//                 border-radius: 50%;
-//             }
-//         }
-        
-
-//         h2 {
-//             @include client-responsive-header(3);
-//             text-align: center;
-//             color: $primary-color;
-//         }
-
-//         // center align for 'goal' and 'skills'
-//         h3 {
-//             @include client-responsive-header(2);
-//             text-align: center;
-//         }
-
-//         &#columnContent {
-//             @include flex-center(row);
-//             justify-content: space-evenly;
-//         }
-
-//         .educationListBlock {
-//             display: flex;
-//             flex-direction: row;
-//             flex-wrap: wrap;
-
-//             li {
-//                 @include client-responsive-text(3.33);
-//                 margin-bottom: 1%;
-//             }
-
-//             .educationIcon {
-//                 @include client-responsive-icon(1);
-//                 padding-right: 10%;
-
-//                 &.pcc {
-//                     padding: 10%;
-//                     border-radius: 33%;
-//                 }
-//             }
-
-//             h4 {
-//                 @include client-responsive-header(1.66);
-//                 color: $text-color;
-//                 margin-top: 2px;
-//                 margin-bottom: 0px;
-//             }
-
-//             h5 {
-//                 @include client-responsive-header(1.25);
-//                 font-family: $font-sans;
-//                 color: $text-color;
-//                 margin-bottom: 0px;
-//             }
-
-//             p {
-//                 @include client-responsive-text(3);
-//                 color: #6e6e6e;
-//             }
-//         }
-            
-//     }
-// }
 
 // Projects Section
 #projects {
-    justify-content: center;
+  justify-content: center;
 
-    a {
-        font-family: $font-sans;
-        color: $secondary-color;
-        text-decoration: underline;
+  a {
+    font-family: $font-sans;
+    color: $secondary-color;
+    text-decoration: underline;
+  }
+
+  li {
+    @include client-responsive-text(1);
+  }
+
+  .projectBlockHeader {
+    h2 {
+      @include client-responsive-header(3);
+      text-align: center;
+      color: $primary-color;
     }
 
-    li {
-        @include client-responsive-text(3);
+    p {
+      text-align: center;
+    }
+  }
+
+  .projectBlock {
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+
+    h3 {
+      text-align: center;
+      @include client-responsive-header(2);
     }
 
-    .projectBlockHeader {
-        h2 {
-            @include client-responsive-header(3);
-            text-align: center;
-            color: $primary-color;
-        }
+    .projectBlockContent {
+      padding-top: 1.5%;
+      @include flex-center(row);
+      align-items: center;
 
-        p {
-            text-align: center;
+      .projectImg {
+        @include client-responsive-icon(8);
+        border-radius: 15%;
+      }
+
+      .projectBlockText {
+        @media (max-width: $desktop-breakpoint) {
+          margin-top: 2.5%;
         }
+        @media (min-width: $desktop-breakpoint) {
+          margin-left: 2.5%;
+        }
+      }
     }
 
-    .projectBlock {
-        padding-top: 2.5%;
-        padding-bottom: 2.5%;
+    .headerBlock.social {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: left;
 
-        h3 {
-            text-align: center;
-            @include client-responsive-header(2);
-        }
+      .socialIconBlock {
+        padding-left: 0%;
+        padding-right: 2.5%;
+      }
 
-        .projectBlockContent {
-            padding-top: 1.5%;
-            @include flex-center(row);
-            align-items: center;
-
-            .projectImg {
-                @include client-responsive-icon(8);
-                border-radius: 15%;
-            }
-
-            .projectBlockText {
-                @media (max-width: $desktop-breakpoint) {
-                    margin-top: 2.5%;
-                }
-                @media (min-width: $desktop-breakpoint) {
-                    margin-left: 2.5%;
-                }
-            }
-
-        }
-
-        .headerBlock.social {
-            //should be side by side, wrapping, even on mobile
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: left;
-
-            .socialIconBlock {
-                padding-left: 0%;
-                padding-right: 2.5%;
-            }
-            
-            .socialIcon {
-                filter: none;
-            }
-
-        }
+      .socialIcon {
+        filter: none;
+      }
     }
-        
+  }
 }
 
 // Footer Section

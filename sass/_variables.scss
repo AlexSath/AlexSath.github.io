@@ -1,0 +1,25 @@
+// ==========================================================================
+// Variables
+// Shared across all SASS files
+// ==========================================================================
+
+// Colors
+$primary-color: #BE713B;
+$secondary-color: #6B0504;
+$accent-color: #26547C;
+$background-color: #F5F5F5;
+$text-color: #161616;
+
+// Fonts
+$font-serif: 'Merriweather', serif;
+$font-sans: 'Montserrat', sans-serif;
+
+// Breakpoints
+$desktop-breakpoint: 1080px;
+
+// Responsive breakpoints (Bootstrap-style)
+$breakpoint-xs: 1px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

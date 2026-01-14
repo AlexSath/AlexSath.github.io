@@ -1,60 +1,10 @@
-// Variables
-$primary-color: #BE713B;
-$secondary-color: #6B0504;
-$accent-color: #26547C;
-$background-color: #F5F5F5;
-$text-color: #161616;
-$font-serif: 'Merriweather', serif;
-$font-sans: 'Montserrat', sans-serif;
-$desktop-breakpoint: 1080px;
+// ==========================================================================
+// Header Styles
+// Shared header component used across all pages
+// ==========================================================================
 
-// Mixins
-@mixin flex-center($direction: row) {
-  display: flex;
-  flex-direction: $direction;
-
-  @media (max-width: $desktop-breakpoint) {
-    flex-direction: column;
-  }
-}
-
-@mixin responsive-icon($sizes) {
-  @each $breakpoint, $size in $sizes {
-    @media (min-width: $breakpoint) {
-      width: $size;
-      height: $size;
-    }
-  }
-}
-
-@mixin client-responsive-icon($size) {
-    @media (max-width: $desktop-breakpoint) {
-        width: 28px * $size;
-        height: 28px * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        width: 48px * $size;
-        height: 48px * $size;
-    }
-}
-
-@mixin client-responsive-header($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.66em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.75em * $size;
-    }
-}
-
-@mixin client-responsive-text($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.33em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.333em * $size;
-    }
-}
+@import 'variables';
+@import 'mixins';
 
 // General Styles
 html {
@@ -67,14 +17,14 @@ body {
   color: $text-color;
   margin: 0;
   font-family: $font-sans;
-  @include client-responsive-text(3);
+  @include client-responsive-text(1);
   overscroll-behavior-y: none;
 }
 
 h1, h2 {
   font-family: $font-serif;
   color: $primary-color;
-  
+
   @media (max-width: $desktop-breakpoint) {
     font-size: 1.5em;
   }
@@ -86,7 +36,7 @@ h1, h2 {
 h3, h4, h5, h6 {
   font-family: $font-serif;
   color: $text-color;
-  
+
   @media (max-width: $desktop-breakpoint) {
     font-size: 1.25em;
   }
@@ -100,24 +50,25 @@ p, li {
   color: $text-color;
 }
 
-.accented {
-  color: $primary-color;
+a {
+  color: $secondary-color;
 }
 
-a {
+.accented {
   color: $primary-color;
 }
 
 // Dynamic Buttons
 .button {
   transition: background-color 0.3s ease;
-  
+
   &:hover {
     background-color: $secondary-color;
   }
 }
 
 // Header Section
+header,
 #header {
   top: 0;
   position: fixed;
@@ -125,20 +76,20 @@ a {
   background-color: $primary-color;
   color: $background-color;
   z-index: 1000;
-  
+
   @media (max-width: $desktop-breakpoint) {
     padding: 3% 5%;
     @include flex-center(column);
     text-align: center;
     gap: 15px;
     transition: height 0.3s ease-in-out;
-    
+
     &.header-compact {
       padding: 2% 5% 2% 5%;
       gap: 0;
     }
   }
-  
+
   @media (min-width: $desktop-breakpoint) {
     padding: 1% 5%;
     display: flex;
@@ -158,7 +109,7 @@ a {
     color: $background-color;
     margin: 0;
     padding: 0;
-    
+
     @media (max-width: $desktop-breakpoint) {
       font-size: 1.75em;
     }
@@ -184,11 +135,10 @@ a {
     @media (max-width: $desktop-breakpoint) {
       order: 3;
       opacity: 1;
-      // max-height: 60px;
       display: flex;
       justify-content: center;
       overflow: hidden;
-      
+
       .header-compact & {
         opacity: 0;
         max-height: 0;
@@ -206,9 +156,8 @@ a {
     @media (max-width: $desktop-breakpoint) {
       order: 2;
       opacity: 1;
-      // max-height: 200px;
       overflow: hidden;
-      
+
       .header-compact & {
         opacity: 0;
         max-height: 0;
@@ -221,25 +170,20 @@ a {
   }
 }
 
-#header nav {
+#header nav,
+header nav {
   align-items: center;
-  
+
   @media (max-width: $desktop-breakpoint) {
     @media screen and (min-width: 350px) {
       width: 90%;
     }
-
     @media screen and (min-width: 576px) {
       width: 50%;
     }
-
     @media screen and (min-width: 768px) {
       width: 25%;
     }
-
-    // @media screen and (min-width: 992px) {
-      
-    // }
   }
 }
 
@@ -247,7 +191,7 @@ a {
   display: flex;
   padding: 0;
   margin: 0;
-  
+
   @media (max-width: $desktop-breakpoint) {
     flex-direction: column;
     gap: 10px;
@@ -265,7 +209,7 @@ a {
     color: $background-color;
     font-weight: bold;
     margin: 0;
-    
+
     @media (max-width: $desktop-breakpoint) {
       padding-top: 2%;
       padding-bottom: 2%;
@@ -275,8 +219,6 @@ a {
     }
 
     @media (min-width: $desktop-breakpoint) {
-      // padding-top: 10%;
-      // padding-bottom: 10%;
       padding-left: 2%;
       padding-right: 2%;
       font-size: 1.5em;
@@ -318,12 +260,10 @@ a {
 
 .socialIcon {
   filter: invert(1);
-  
+
   @media (max-width: $desktop-breakpoint) {
     width: 32px;
     height: 32px;
-    // margin-left: 10%;
-    // margin-right: 10%;
   }
   @media (min-width: $desktop-breakpoint) {
     @include responsive-icon((
@@ -337,6 +277,7 @@ a {
 }
 
 // Footer
+footer,
 #footer {
   padding: 1% 5%;
   display: flex;
@@ -356,7 +297,7 @@ a {
 // Content Sections
 #content {
   display: flex;
-  
+
   @media (max-width: $desktop-breakpoint) {
     padding: 5% 5%;
   }
@@ -370,7 +311,7 @@ a {
     color: $primary-color;
     padding-bottom: 2.5%;
     margin-bottom: 0;
-    
+
     @media (max-width: $desktop-breakpoint) {
       font-size: 2em;
     }
@@ -383,7 +324,7 @@ a {
     font-family: $font-sans;
     color: $text-color;
     margin-bottom: 0.75em;
-    
+
     @media (max-width: $desktop-breakpoint) {
       font-size: 1em;
     }

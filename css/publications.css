@@ -19,12 +19,12 @@ body {
   color: #161616;
 }
 #content a {
-  color: #BE713B;
+  color: #6B0504;
   font-style: italic;
   text-decoration: underline;
 }
 #content a:hover {
-  color: #BE713B;
+  color: #6B0504;
   font-style: normal;
   font-weight: bold;
   text-decoration: none;
@@ -35,7 +35,7 @@ body {
 }
 @media (max-width: 1080px) {
   .contentBlock {
-    padding-left: 0.5%;
+    padding-left: 2.5%;
     padding-right: 2.5%;
   }
 }
@@ -73,12 +73,12 @@ body {
 }
 @media (max-width: 1080px) {
   .pubListBlock ul li {
-    font-size: 0.99em;
+    font-size: 0.75em;
   }
 }
 @media (min-width: 1080px) {
   .pubListBlock ul li {
-    font-size: 0.999em;
+    font-size: 1em;
   }
 }
 

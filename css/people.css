@@ -67,12 +67,12 @@ body {
 }
 @media (max-width: 1080px) {
   #peopleContentBlockText p {
-    font-size: 1.7325em;
+    font-size: 1.3125em;
   }
 }
 @media (min-width: 1080px) {
   #peopleContentBlockText p {
-    font-size: 1.74825em;
+    font-size: 1.75em;
   }
 }
 
@@ -154,12 +154,12 @@ body {
 }
 @media (max-width: 1080px) {
   .personTitle {
-    font-size: 1.485em;
+    font-size: 1.125em;
   }
 }
 @media (min-width: 1080px) {
   .personTitle {
-    font-size: 1.4985em;
+    font-size: 1.5em;
   }
 }
 
@@ -170,12 +170,12 @@ body {
 }
 @media (max-width: 1080px) {
   .personDescription {
-    font-size: 1.32em;
+    font-size: 0.9975em;
   }
 }
 @media (min-width: 1080px) {
   .personDescription {
-    font-size: 1.332em;
+    font-size: 1.33em;
   }
 }
 

@@ -12,12 +12,12 @@ body {
 }
 @media (max-width: 1080px) {
   body {
-    font-size: 0.99em;
+    font-size: 0.75em;
   }
 }
 @media (min-width: 1080px) {
   body {
-    font-size: 0.999em;
+    font-size: 1em;
   }
 }
 
@@ -56,11 +56,11 @@ p, li {
   color: #161616;
 }
 
-.accented {
-  color: #BE713B;
+a {
+  color: #6B0504;
 }
 
-a {
+.accented {
   color: #BE713B;
 }
 
@@ -71,6 +71,7 @@ a {
   background-color: #6B0504;
 }
 
+header,
 #header {
   top: 0;
   position: fixed;
@@ -80,6 +81,7 @@ a {
   z-index: 1000;
 }
 @media (max-width: 1080px) {
+  header,
   #header {
     padding: 3% 5%;
     display: flex;
@@ -90,17 +92,20 @@ a {
   }
 }
 @media (max-width: 1080px) and (max-width: 1080px) {
+  header,
   #header {
     flex-direction: column;
   }
 }
 @media (max-width: 1080px) {
+  header.header-compact,
   #header.header-compact {
     padding: 2% 5% 2% 5%;
     gap: 0;
   }
 }
 @media (min-width: 1080px) {
+  header,
   #header {
     padding: 1% 5%;
     display: flex;
@@ -111,21 +116,25 @@ a {
     position: -webkit-sticky;
   }
 }
+header .accented,
 #header .accented {
   color: #F5F5F5;
   text-decoration: underline;
 }
+header h1,
 #header h1 {
   color: #F5F5F5;
   margin: 0;
   padding: 0;
 }
 @media (max-width: 1080px) {
+  header h1,
   #header h1 {
     font-size: 1.75em;
   }
 }
 @media (min-width: 1080px) {
+  header h1,
   #header h1 {
     font-size: 2em;
   }
@@ -184,21 +193,25 @@ a {
   }
 }
 
-#header nav {
+#header nav,
+header nav {
   align-items: center;
 }
 @media screen and (max-width: 1080px) and (min-width: 350px) {
-  #header nav {
+  #header nav,
+  header nav {
     width: 90%;
   }
 }
 @media screen and (max-width: 1080px) and (min-width: 576px) {
-  #header nav {
+  #header nav,
+  header nav {
     width: 50%;
   }
 }
 @media screen and (max-width: 1080px) and (min-width: 768px) {
-  #header nav {
+  #header nav,
+  header nav {
     width: 25%;
   }
 }
@@ -316,6 +329,7 @@ a {
   }
 }
 
+footer,
 #footer {
   padding: 1% 5%;
   display: flex;
@@ -323,6 +337,7 @@ a {
   background-color: #BE713B;
   z-index: 2;
 }
+footer p,
 #footer p {
   color: #F5F5F5;
   align-self: center;

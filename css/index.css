@@ -6,12 +6,12 @@ body {
 }
 @media (max-width: 1080px) {
   body {
-    font-size: 0.99em;
+    font-size: 0.75em;
   }
 }
 @media (min-width: 1080px) {
   body {
-    font-size: 0.999em;
+    font-size: 1em;
   }
 }
 

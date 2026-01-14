@@ -1,0 +1,77 @@
+// ==========================================================================
+// Mixins
+// Shared across all SASS files
+// ==========================================================================
+
+@import 'variables';
+
+// Flex center with responsive direction change
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+// Responsive icon sizing with map of breakpoints
+@mixin responsive-icon($sizes) {
+  @each $breakpoint, $size in $sizes {
+    @media (min-width: $breakpoint) {
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+// Client-responsive icon sizing (multiplier-based)
+@mixin client-responsive-icon($size) {
+  @media (max-width: $desktop-breakpoint) {
+    width: 28px * $size;
+    height: 28px * $size;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    width: 48px * $size;
+    height: 48px * $size;
+  }
+}
+
+// Client-responsive header sizing
+@mixin client-responsive-header($size) {
+  @media (max-width: $desktop-breakpoint) {
+    font-size: 0.66em * $size;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 0.75em * $size;
+  }
+}
+
+// Client-responsive text sizing
+@mixin client-responsive-text($size) {
+  @media (max-width: $desktop-breakpoint) {
+    font-size: 0.75em * $size;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 1em * $size;
+  }
+}
+
+// Responsive block width (Bootstrap-style breakpoints)
+@mixin responsive-block-width() {
+  @media (min-width: $breakpoint-xs) {
+    width: 100px;
+  }
+  @media (min-width: $breakpoint-sm) {
+    width: 150px;
+  }
+  @media (min-width: $breakpoint-md) {
+    width: 200px;
+  }
+  @media (min-width: $breakpoint-lg) {
+    width: 250px;
+  }
+  @media (min-width: $breakpoint-xl) {
+    width: 300px;
+  }
+}

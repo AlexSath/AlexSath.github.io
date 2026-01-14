@@ -1,123 +1,81 @@
-// Variables (using existing color scheme)
-$primary-color: #BE713B;
-$secondary-color: #6B0504;
-$accent-color: #26547C;
-$background-color: #F5F5F5;
-$text-color: #161616;
-$font-serif: 'Merriweather', serif;
-$font-sans: 'Montserrat', sans-serif;
-$desktop-breakpoint: 1080px;
+// ==========================================================================
+// Publications Page Styles
+// ==========================================================================
 
-// Mixins (from existing file)
-@mixin flex-center($direction: row) {
-  display: flex;
-  flex-direction: $direction;
-
-  @media (max-width: $desktop-breakpoint) {
-    flex-direction: column;
-  }
-}
-
-@mixin client-responsive-icon($size) {
-    @media (max-width: $desktop-breakpoint) {
-        width: 28px * $size;
-        height: 28px * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        width: 48px * $size;
-        height: 48px * $size;
-    }
-}
-
-@mixin client-responsive-header($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.66em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.75em * $size;
-    }
-}
-
-@mixin client-responsive-text($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.33em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.333em * $size;
-    }
-}
+@import 'variables';
+@import 'mixins';
 
 // General Styles
 body {
-    background-color: $background-color;
-    color: $text-color;
-    margin: 0;
-    font-family: $font-sans;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  font-family: $font-sans;
 }
 
 // Content Section
 #content {
-    .accented {
-        color: $accent-color;
-        font-weight: bolder;
-    }
+  .accented {
+    color: $accent-color;
+    font-weight: bolder;
+  }
 
-    .secondaryAccent {
-        color: $primary-color;
-    }
+  .secondaryAccent {
+    color: $primary-color;
+  }
 
-    .pubFooter {
-        font-size: 1em;
-        font-style: italic;
-        text-align: right;
-        color: $text-color;
-    }
+  .pubFooter {
+    font-size: 1em;
+    font-style: italic;
+    text-align: right;
+    color: $text-color;
+  }
 
-    a {
-        color: $primary-color;
-        font-style: italic;
-        text-decoration: underline;
+  a {
+    color: $secondary-color;
+    font-style: italic;
+    text-decoration: underline;
 
-        &:hover {
-            color: $primary-color;
-            font-style: normal;
-            font-weight: bold;
-            text-decoration: none;
-        }
+    &:hover {
+      color: $secondary-color;
+      font-style: normal;
+      font-weight: bold;
+      text-decoration: none;
     }
+  }
 }
 
 // Content Blocks
 .contentBlock {
-    @media (max-width: $desktop-breakpoint) {
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        padding-left: 24%;
-        padding-right: 25%;
-    }
-    flex-grow: 1;
+  @media (max-width: $desktop-breakpoint) {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 24%;
+    padding-right: 25%;
+  }
+  flex-grow: 1;
 }
 
 .pubListBlock {
-    align-self: center;
-    padding-bottom: 10%;
-    margin-bottom: 0;
+  align-self: center;
+  padding-bottom: 10%;
+  margin-bottom: 0;
 
-    h2 {
-        font-family: $font-serif;
-        color: $primary-color;
-        @include client-responsive-header(3);
-        text-align: center;
-    }
+  h2 {
+    font-family: $font-serif;
+    color: $primary-color;
+    @include client-responsive-header(3);
+    text-align: center;
+  }
 
-    ul {
-        li {
-            font-family: $font-sans;
-            color: $text-color;
-            @include client-responsive-text(3);
-            margin-bottom: 1.5%;
-        }
+  ul {
+    li {
+      font-family: $font-sans;
+      color: $text-color;
+      @include client-responsive-text(1);
+      margin-bottom: 1.5%;
     }
+  }
 }

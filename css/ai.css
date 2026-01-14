@@ -6,12 +6,12 @@ body {
 }
 @media (max-width: 1080px) {
   body {
-    font-size: 0.99em;
+    font-size: 0.75em;
   }
 }
 @media (min-width: 1080px) {
   body {
-    font-size: 0.999em;
+    font-size: 1em;
   }
 }
 
@@ -83,10 +83,11 @@ section {
 @media (min-width: 1080px) {
   .socialIconBlock .socialIcon {
     width: 36px;
-    width: 36px;
+    height: 36px;
   }
 }
 
+header,
 #header {
   display: flex;
   flex-direction: row;
@@ -95,39 +96,47 @@ section {
   color: #F5F5F5;
 }
 @media (max-width: 1080px) {
+  header,
   #header {
     flex-direction: column;
   }
 }
 @media (max-width: 1080px) {
+  header,
   #header {
     padding: 1% 7.5%;
   }
 }
 @media (min-width: 1080px) {
+  header,
   #header {
     padding: 1% 20%;
   }
 }
+header h1,
 #header h1 {
   margin: 0;
   font-size: 2em;
   color: #F5F5F5;
 }
+header .headerBlock,
 #header .headerBlock {
   flex: 1 1 auto;
 }
+header .headerBlock.social,
 #header .headerBlock.social {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 @media (max-width: 1080px) {
+  header .headerBlock.social,
   #header .headerBlock.social {
     justify-content: flex-start;
   }
 }
 @media (min-width: 1080px) {
+  header .headerBlock.social,
   #header .headerBlock.social {
     justify-content: flex-end;
   }
@@ -154,7 +163,7 @@ section {
 @media (min-width: 1080px) {
   #about .contentSubBlock.headshot .headshotImg {
     width: 240px;
-    width: 240px;
+    height: 240px;
   }
 }
 #about .contentSubBlock h2 {
@@ -204,12 +213,12 @@ section {
 }
 @media (max-width: 1080px) {
   #about .contentSubBlock .educationListBlock li {
-    font-size: 1.0989em;
+    font-size: 0.825em;
   }
 }
 @media (min-width: 1080px) {
   #about .contentSubBlock .educationListBlock li {
-    font-size: 1.10889em;
+    font-size: 1.1em;
   }
 }
 #about .contentSubBlock .educationListBlock .educationIcon {
@@ -224,7 +233,7 @@ section {
 @media (min-width: 1080px) {
   #about .contentSubBlock .educationListBlock .educationIcon {
     width: 48px;
-    width: 48px;
+    height: 48px;
   }
 }
 #about .contentSubBlock .educationListBlock .educationIcon.pcc {
@@ -266,12 +275,12 @@ section {
 }
 @media (max-width: 1080px) {
   #about .contentSubBlock .educationListBlock p {
-    font-size: 0.99em;
+    font-size: 0.75em;
   }
 }
 @media (min-width: 1080px) {
   #about .contentSubBlock .educationListBlock p {
-    font-size: 0.999em;
+    font-size: 1em;
   }
 }
 
@@ -335,7 +344,7 @@ section {
 @media (min-width: 1080px) {
   #projects .projectBlock .projectBlockContent .projectImg {
     width: 384px;
-    width: 384px;
+    height: 384px;
   }
 }
 @media (max-width: 1080px) {

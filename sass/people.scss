@@ -1,197 +1,128 @@
-// Variables (using existing color scheme)
-$primary-color: #BE713B;
-$secondary-color: #6B0504;
-$accent-color: #26547C;
-$background-color: #F5F5F5;
-$text-color: #161616;
-$font-serif: 'Merriweather', serif;
-$font-sans: 'Montserrat', sans-serif;
-$desktop-breakpoint: 1080px;
+// ==========================================================================
+// People Page Styles
+// ==========================================================================
 
-// Responsive block width breakpoints
-$breakpoint-xs: 1px;
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
-$breakpoint-xl: 1200px;
-
-// Mixins (from existing file)
-@mixin flex-center($direction: row) {
-  display: flex;
-  flex-direction: $direction;
-
-  @media (max-width: $desktop-breakpoint) {
-    flex-direction: column;
-  }
-}
-
-@mixin client-responsive-icon($size) {
-    @media (max-width: $desktop-breakpoint) {
-        width: 28px * $size;
-        height: 28px * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        width: 48px * $size;
-        height: 48px * $size;
-    }
-}
-
-@mixin client-responsive-header($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.66em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.75em * $size;
-    }
-}
-
-@mixin client-responsive-text($size) {
-    @media (max-width: $desktop-breakpoint) {
-        font-size: 0.33em * $size;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        font-size: 0.333em * $size;
-    }
-}
-
-// Responsive block width mixin
-@mixin responsive-block-width() {
-    @media (min-width: $breakpoint-xs) {
-        width: 100px;
-    }
-    @media (min-width: $breakpoint-sm) {
-        width: 150px;
-    }
-    @media (min-width: $breakpoint-md) {
-        width: 200px;
-    }
-    @media (min-width: $breakpoint-lg) {
-        width: 250px;
-    }
-    @media (min-width: $breakpoint-xl) {
-        width: 300px;
-    }
-}
+@import 'variables';
+@import 'mixins';
 
 // General Styles
 body {
-    background-color: $background-color;
-    color: $text-color;
-    margin: 0;
-    font-family: $font-sans;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  font-family: $font-sans;
 }
 
 // Content Section
 #content {
-    flex-direction: column;
-    justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 
-    @media (max-width: $desktop-breakpoint) {
-        margin-bottom: 15%;
-    }
+  @media (max-width: $desktop-breakpoint) {
+    margin-bottom: 15%;
+  }
 }
 
 // Content Blocks
 .contentBlock {
-    @media (max-width: $desktop-breakpoint) {
-        padding-left: 2.5%;
-        padding-right: 2.5%;
-        // padding-bottom: 5%;
-    }
-    @media (min-width: $desktop-breakpoint) {
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  @media (max-width: $desktop-breakpoint) {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .peopleContentBlock {
-    &.text {
-        padding-bottom: 7.5%;
-        text-align: center;
-    }
+  &.text {
+    padding-bottom: 7.5%;
+    text-align: center;
+  }
 
-    &.gallery {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        gap: 1.5%;
-    }
+  &.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1.5%;
+  }
 }
 
 // People Content Block Text
 #peopleContentBlockText {
-    h2 {
-        color: $primary-color;
-        font-family: $font-serif;
-        @include client-responsive-header(4.5);
-        text-align: center;
-    }
+  h2 {
+    color: $primary-color;
+    font-family: $font-serif;
+    @include client-responsive-header(4.5);
+    text-align: center;
+  }
 
-    p {
-        font-family: $font-sans;
-        @include client-responsive-text(5.25);
-        color: $text-color;
-        text-align: center;
-    }
+  p {
+    font-family: $font-sans;
+    @include client-responsive-text(1.75);
+    color: $text-color;
+    text-align: center;
+  }
 }
 
 // Person Blocks
 .personBlock {
-    @include responsive-block-width();
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+  @include responsive-block-width();
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 5%;
+  justify-content: center;
+
+  @media (max-width: $desktop-breakpoint) {
+    width: 40%;
+  }
+
+  h3 {
+    font-family: $font-serif;
+    @include client-responsive-header(2.3);
+    text-align: center;
+    color: $accent-color;
+    font-weight: bold;
+  }
+
+  img {
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 50%;
+    border-color: $accent-color;
+    border-style: solid;
+    border-width: 5px;
     margin-bottom: 5%;
-    justify-content: center;
+  }
 
-    @media (max-width: $desktop-breakpoint) {
-        width: 40%;
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
     }
-
-    h3 {
-        font-family: $font-serif;
-        @include client-responsive-header(2.3);
-        text-align: center;
-        color: $accent-color;
-        font-weight: bold;
-    }
-
-    img {
-        width: 90%;
-        margin-left: 5%;
-        border-radius: 50%;
-        border-color: $accent-color;
-        border-style: solid;
-        border-width: 5px;
-        margin-bottom: 5%;
-    }
-
-    a {
-        text-decoration: none;
-        color: inherit;
-
-        &:hover {
-            text-decoration: none;
-            color: inherit;
-        }
-    }
+  }
 }
 
 // Person Details
 .personTitle {
-    font-family: $font-sans;
-    font-style: italic;
-    @include client-responsive-text(4.5);
-    text-align: center;
-    color: $accent-color;
+  font-family: $font-sans;
+  font-style: italic;
+  @include client-responsive-text(1.5);
+  text-align: center;
+  color: $accent-color;
 }
 
 .personDescription {
-    font-family: $font-sans;
-    @include client-responsive-text(4);
-    text-align: center;
-    color: $text-color;
+  font-family: $font-sans;
+  @include client-responsive-text(1.33);
+  text-align: center;
+  color: $text-color;
 }
